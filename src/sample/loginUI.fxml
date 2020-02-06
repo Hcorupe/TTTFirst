@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox prefHeight="269.0" prefWidth="421.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1">
+  <children>
+    <MenuBar VBox.vgrow="NEVER">
+      <menus>
+        <Menu mnemonicParsing="false" text="Help">
+          <items>
+            <MenuItem mnemonicParsing="false" text="About MyHelloApp" />
+          </items>
+        </Menu>
+      </menus>
+    </MenuBar>
+    <AnchorPane maxHeight="-1.0" maxWidth="-1.0" VBox.vgrow="ALWAYS">
+      <children>
+            <ImageView layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@images.jpeg" />
+               </image>
+            </ImageView>
+            <Button layoutX="279.0" layoutY="170.0" mnemonicParsing="false" text="Sign in" />
+            <Label layoutX="225.0" layoutY="36.0" text="Account" />
+            <Label layoutX="227.0" layoutY="103.0" text="Password" />
+            <PasswordField layoutX="227.0" layoutY="60.0" />
+            <TextField layoutX="227.0" layoutY="127.0" />
+      </children>
+    </AnchorPane>
+  </children>
+</VBox>

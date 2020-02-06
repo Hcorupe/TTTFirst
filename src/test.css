@@ -1,0 +1,30 @@
+.root {
+    -fx-background-image: url("back.png");
+    -fx-opacity:0.8;
+}
+
+/*.button {
+    -fx-text-fill: white;
+    -fx-font-family: "Arial Narrow";
+    -fx-font-weight: bold;
+    -fx-background-color: linear-gradient(#f8f8ff, #a9a9a9);
+    -fx-effect: dropshadow( three-pass-box , rgba(10,10,10,0.8) , 5, 0.0 , 0 , 1 );
+}
+*/
+.button1{
+    -fx-color:white;
+    -fx-background-color:cornflowerblue;
+    -fx-border-radius: 3px;
+    -fx-border-width: 0;
+    -fx-margin: 0;
+    -fx-outline: none;
+    -fx-font-size: 15px;
+    -fx-font-weight: lighter;
+    -fx-text-alignment: center;
+    -fx-cursor: pointer;
+    -fx-opacity: 0.6;
+}
+.button1:hover{
+    -fx-transition: .8s linear;
+    -fx-background-color:#4B71E0;
+}
