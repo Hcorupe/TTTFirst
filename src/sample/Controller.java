@@ -12,40 +12,51 @@ import javax.swing.*;
 
 public class Controller {
 
-    int controlLoop = 0;
-    int turn = 0;
-    @FXML
-    Label label;
-    @FXML
-    Label label2;
-    @FXML
-    Label label3;
-    @FXML
-    Label label4;
-    @FXML
-    Label label5;
-    @FXML
-    Label label6;
-    @FXML
-    Label label7;
-    @FXML
-    Label label8;
-    @FXML
-    Label label9;
+    int controlLoop = 0; //Adds 1 number per Button Click.. 0 % 2 = 0 -> (X) , 1 % 2 = 1 -> (O), 2 % 2 = 0 -> (X)
+    // 3 % 2 = 1 -> (O), etc....
+    int turn = 0;        //Determines who's turn it is by using control loop. (X or O)
 
-
+    /*              GAME BOARD
+     *              |       |
+     *      zeroZero|zeroOne|zeroTwo
+     *      ________|_______|_______
+     *              |       |
+     *      oneZero |oneOne | oneTwo
+     *      ________|_______|_______
+     *              |       |
+     *      twoZero |twoOne | twoTwo
+     *              |       |
+     */
+    @FXML
+    Label zeroZero;
+    @FXML
+    Label zeroOne;
+    @FXML
+    Label zeroTwo;
+    @FXML
+    Label oneZero;
+    @FXML
+    Label oneOne;
+    @FXML
+    Label OneTwo;
+    @FXML
+    Label twoZero;
+    @FXML
+    Label twoOne;
+    @FXML
+    Label twoTwo;
 
     public void onClicked(){
         turn = controlLoop % 2;
         if(turn == 0){
             System.out.println(controlLoop+"X");
-            label.setPrefSize(200,200);
-            label.setText("X");
+            zeroZero.setPrefSize(200,200);
+            zeroZero.setText("X");
         }
         else if(turn == 1){
             System.out.println(controlLoop+"O");
-            label.setPrefSize(200,200);
-            label.setText("O");
+            zeroZero.setPrefSize(200,200);
+            zeroZero.setText("O");
         }
         else{
             System.out.println(controlLoop+"SOMETHINGS WRONG");
@@ -57,13 +68,13 @@ public class Controller {
         turn = controlLoop % 2;
         if(turn == 0){
             System.out.println(controlLoop+"X");
-            label2.setPrefSize(200,200);
-            label2.setText("X");
+            zeroOne.setPrefSize(200,200);
+            zeroOne.setText("X");
         }
         else if(turn == 1){
             System.out.println(controlLoop+"O");
-            label2.setPrefSize(200,200);
-            label2.setText("O");
+            zeroOne.setPrefSize(200,200);
+            zeroOne.setText("O");
         }
         else{
             System.out.println(controlLoop+"SOMETHINGS WRONG");
@@ -75,13 +86,13 @@ public class Controller {
         turn = controlLoop % 2;
         if(turn == 0){
             System.out.println(controlLoop+"X");
-            label3.setPrefSize(200,200);
-            label3.setText("X");
+            zeroTwo.setPrefSize(200,200);
+            zeroTwo.setText("X");
         }
         else if(turn == 1){
             System.out.println(controlLoop+"O");
-            label3.setPrefSize(200,200);
-            label3.setText("O");
+            zeroTwo.setPrefSize(200,200);
+            zeroTwo.setText("O");
         }
         else{
             System.out.println(controlLoop+"SOMETHINGS WRONG");
@@ -93,13 +104,13 @@ public class Controller {
         turn = controlLoop % 2;
         if(turn == 0){
             System.out.println(controlLoop+"X");
-            label4.setPrefSize(200,200);
-            label4.setText("X");
+            oneZero.setPrefSize(200,200);
+            oneZero.setText("X");
         }
         else if(turn == 1){
             System.out.println(controlLoop+"O");
-            label4.setPrefSize(200,200);
-            label4.setText("O");
+            oneZero.setPrefSize(200,200);
+            oneZero.setText("O");
         }
         else{
             System.out.println(controlLoop+"SOMETHINGS WRONG");
@@ -111,13 +122,13 @@ public class Controller {
         turn = controlLoop % 2;
         if(turn == 0){
             System.out.println(controlLoop+"X");
-            label5.setPrefSize(200,200);
-            label5.setText("X");
+            oneOne.setPrefSize(200,200);
+            oneOne.setText("X");
         }
         else if(turn == 1){
             System.out.println(controlLoop+"O");
-            label5.setPrefSize(200,200);
-            label5.setText("O");
+            oneOne.setPrefSize(200,200);
+            oneOne.setText("O");
         }
         else{
             System.out.println(controlLoop+"SOMETHINGS WRONG");
@@ -129,13 +140,13 @@ public class Controller {
         turn = controlLoop % 2;
         if(turn == 0){
             System.out.println(controlLoop+"X");
-            label6.setPrefSize(200,200);
-            label6.setText("X");
+            OneTwo.setPrefSize(200,200);
+            OneTwo.setText("X");
         }
         else if(turn == 1){
             System.out.println(controlLoop+"O");
-            label6.setPrefSize(200,200);
-            label6.setText("O");
+            OneTwo.setPrefSize(200,200);
+            OneTwo.setText("O");
         }
         else{
             System.out.println(controlLoop+"SOMETHINGS WRONG");
@@ -147,13 +158,13 @@ public class Controller {
         turn = controlLoop % 2;
         if(turn == 0){
             System.out.println(controlLoop+"X");
-            label7.setPrefSize(200,200);
-            label7.setText("X");
+            twoZero.setPrefSize(200,200);
+            twoZero.setText("X");
         }
         else if(turn == 1){
             System.out.println(controlLoop+"O");
-            label7.setPrefSize(200,200);
-            label7.setText("O");
+            twoZero.setPrefSize(200,200);
+            twoZero.setText("O");
         }
         else{
             System.out.println(controlLoop+"SOMETHINGS WRONG");
@@ -165,13 +176,13 @@ public class Controller {
         turn = controlLoop % 2;
         if(turn == 0){
             System.out.println(controlLoop+"X");
-            label8.setPrefSize(200,200);
-            label8.setText("X");
+            twoOne.setPrefSize(200,200);
+            twoOne.setText("X");
         }
         else if(turn == 1){
             System.out.println(controlLoop+"O");
-            label8.setPrefSize(200,200);
-            label8.setText("O");
+            twoOne.setPrefSize(200,200);
+            twoOne.setText("O");
         }
         else{
             System.out.println(controlLoop+"SOMETHINGS WRONG");
@@ -183,13 +194,13 @@ public class Controller {
         turn = controlLoop % 2;
         if(turn == 0){
             System.out.println(controlLoop+"X");
-            label9.setPrefSize(200,200);
-            label9.setText("X");
+            twoTwo.setPrefSize(200,200);
+            twoTwo.setText("X");
         }
         else if(turn == 1){
             System.out.println(controlLoop+"O");
-            label9.setPrefSize(200,200);
-            label9.setText("O");
+            twoTwo.setPrefSize(200,200);
+            twoTwo.setText("O");
         }
         else{
             System.out.println(controlLoop+"SOMETHINGS WRONG");
