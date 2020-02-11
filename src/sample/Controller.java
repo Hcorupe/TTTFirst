@@ -37,6 +37,10 @@ public class Controller {
     Button twoOne;
     @FXML
     Button twoTwo;
+    @FXML
+    Button resetButton;
+    @FXML
+    Button playButton;
 
     private boolean firstPlayer = true;
 
@@ -52,5 +56,30 @@ public class Controller {
             clickedButton.setText("O");                   //Makes the empty buttons Text into an "O"
             firstPlayer = true;                           //Switches players turn
         }
+        checkWinner();
+    }
+
+    void checkWinner(){                   //TESTING OUT - We could check the winner like this (or find a better way)
+
+        if(zeroZero.getText().equals(zeroOne.getText()) && zeroOne.getText().equals(zeroTwo.getText())){
+            System.out.println("YAY");
+        }
+
+    }
+
+    public void resetClicked(ActionEvent startOver) {       //TESTING OUT need to Fix Reset button
+        String testReset;
+        Button newStartOverButton = (Button) startOver.getTarget();
+        testReset = newStartOverButton.getText();
+        System.out.println("Testing " + testReset + " Button");
+
+    }
+
+    public void playClicked(ActionEvent playGame) {       //TESTING OUT need to fix Play button
+        String testPlay;
+        Button newPlayButton = (Button) playGame.getTarget();
+        testPlay = newPlayButton.getText();
+        System.out.println("Testing " + testPlay + " Button");
+
     }
 }

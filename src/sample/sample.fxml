@@ -29,11 +29,11 @@
                         <Font name="Arial Bold" size="18.0" />
                     </font>
                 </Label>
-                <Button layoutX="25.0" layoutY="184.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="30.0" prefWidth="120.0" styleClass="button2" text="Play" textAlignment="CENTER" textFill="#403f3f">
+                <Button fx:id="playButton" layoutX="25.0" layoutY="184.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#playClicked" prefHeight="30.0" prefWidth="120.0" styleClass="button2" text="Play" textAlignment="CENTER" textFill="#403f3f">
                     <font>
                         <Font size="14.0" />
                     </font></Button>
-                <Button alignment="CENTER" layoutX="25.0" layoutY="238.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="30.0" prefWidth="120.0" text="Reset" textFill="#403f3f" />
+                <Button fx:id="resetButton" alignment="CENTER" layoutX="25.0" layoutY="238.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#resetClicked" prefHeight="30.0" prefWidth="120.0" text="Reset" textFill="#403f3f" />
                 <Label layoutX="71.0" layoutY="281.0" text="Timer" textAlignment="CENTER" textFill="#514f4f" />
                 <ProgressBar layoutX="29.0" layoutY="298.0" prefHeight="18.0" prefWidth="110.0" progress="0.0" />
                 <Label layoutX="67.0" layoutY="325.0" text="Sound" textAlignment="CENTER" textFill="#514f4f" />
@@ -54,39 +54,39 @@
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                     </rowConstraints>
                     <children>
-                        <Button mnemonicParsing="false" onAction="#onClicked" prefHeight="143.0" prefWidth="228.0">
+                        <Button fx:id="zeroZero" mnemonicParsing="false" onAction="#onClicked" prefHeight="143.0" prefWidth="228.0">
                             <font>
                                 <Font size="48.0" />
                             </font></Button>
-                        <Button mnemonicParsing="false" onAction="#onClicked" prefHeight="139.0" prefWidth="189.0" GridPane.columnIndex="1">
+                        <Button fx:id="zeroOne" mnemonicParsing="false" onAction="#onClicked" prefHeight="139.0" prefWidth="189.0" GridPane.columnIndex="1">
                      <font>
                         <Font size="48.0" />
                      </font></Button>
-                        <Button mnemonicParsing="false" onAction="#onClicked" prefHeight="172.0" prefWidth="229.0" GridPane.columnIndex="2">
+                        <Button fx:id="zeroTwo" mnemonicParsing="false" onAction="#onClicked" prefHeight="172.0" prefWidth="229.0" GridPane.columnIndex="2">
                      <font>
                         <Font size="48.0" />
                      </font></Button>
-                        <Button mnemonicParsing="false" onAction="#onClicked" prefHeight="240.0" prefWidth="257.0" GridPane.rowIndex="1">
+                        <Button fx:id="oneZero" mnemonicParsing="false" onAction="#onClicked" prefHeight="240.0" prefWidth="257.0" GridPane.rowIndex="1">
                      <font>
                         <Font size="48.0" />
                      </font></Button>
-                        <Button mnemonicParsing="false" onAction="#onClicked" prefHeight="164.0" prefWidth="198.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                        <Button fx:id="oneOne" mnemonicParsing="false" onAction="#onClicked" prefHeight="164.0" prefWidth="198.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
                      <font>
                         <Font size="48.0" />
                      </font></Button>
-                        <Button mnemonicParsing="false" onAction="#onClicked" prefHeight="201.0" prefWidth="273.0" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                        <Button fx:id="oneTwo" mnemonicParsing="false" onAction="#onClicked" prefHeight="201.0" prefWidth="273.0" GridPane.columnIndex="2" GridPane.rowIndex="1">
                      <font>
                         <Font size="48.0" />
                      </font></Button>
-                        <Button mnemonicParsing="false" onAction="#onClicked" prefHeight="186.0" prefWidth="323.0" GridPane.rowIndex="2">
+                        <Button fx:id="twoZero" mnemonicParsing="false" onAction="#onClicked" prefHeight="186.0" prefWidth="323.0" GridPane.rowIndex="2">
                      <font>
                         <Font size="48.0" />
                      </font></Button>
-                        <Button mnemonicParsing="false" onAction="#onClicked" prefHeight="165.0" prefWidth="248.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                        <Button fx:id="twoOne" mnemonicParsing="false" onAction="#onClicked" prefHeight="165.0" prefWidth="248.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
                      <font>
                         <Font size="48.0" />
                      </font></Button>
-                        <Button mnemonicParsing="false" onAction="#onClicked" prefHeight="216.0" prefWidth="285.0" GridPane.columnIndex="2" GridPane.rowIndex="2">
+                        <Button fx:id="twoTwo" mnemonicParsing="false" onAction="#onClicked" prefHeight="216.0" prefWidth="285.0" GridPane.columnIndex="2" GridPane.rowIndex="2">
                      <font>
                         <Font size="48.0" />
                      </font></Button>
