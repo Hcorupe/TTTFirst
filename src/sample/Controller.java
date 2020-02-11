@@ -60,6 +60,9 @@ public class Controller {
         if ("".equals(buttonLabel) && firstPlayer){       //Checking if button Text is empty and if its player 1's turn
             clickedButton.setText("X");                   //Makes the empty buttons Text into an "X"
             firstPlayer = false;                          //Switches players turn
+            double x = clickedButton.getLayoutX();  //DOESNT WORK RIGHT
+            double y = clickedButton.getLayoutY();  //DOESNT WORK RIGHT
+            System.out.println("COORDINATES " + x + " " + y + " "); //DOESNT WORK RIGHT
         }
         else if("".equals(buttonLabel) && !firstPlayer){  //Checking if button Text is empty and if its player 2's turn
             clickedButton.setText("O");                   //Makes the empty buttons Text into an "O"

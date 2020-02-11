@@ -33,8 +33,8 @@
                     <font>
                         <Font size="14.0" />
                     </font></Button>
-                <Button fx:id="resetButton" alignment="CENTER" layoutX="25.0" layoutY="238.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#resetClicked" prefHeight="30.0" prefWidth="120.0" text="Reset" textFill="#403f3f" />
-            <MenuButton fx:id="gameType" layoutX="41.0" layoutY="288.0" mnemonicParsing="false" text="Game Type">
+                <Button fx:id="resetButton" alignment="CENTER" layoutX="25.0" layoutY="220.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#resetClicked" prefHeight="30.0" prefWidth="120.0" text="Reset" textFill="#403f3f" />
+            <MenuButton fx:id="gameType" alignment="CENTER" contentDisplay="CENTER" layoutX="24.0" layoutY="263.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="120.0" text="Game Type" textAlignment="CENTER">
               <items>
                 <MenuItem fx:id="playerVsPlayer" mnemonicParsing="false" onAction="#setPlayerVsPlayer" text="Player vs Player" />
                 <MenuItem fx:id="playerVsAi" mnemonicParsing="false" onAction="#setPlayerVsAi" text="Player vs AI" />
