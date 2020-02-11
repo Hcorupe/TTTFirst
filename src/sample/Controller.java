@@ -20,23 +20,7 @@ public class Controller {
      */
 
     @FXML
-    Button zeroZero;
-    @FXML
-    Button zeroOne;
-    @FXML
-    Button zeroTwo;
-    @FXML
-    Button oneZero;
-    @FXML
-    Button oneOne;
-    @FXML
-    Button oneTwo;
-    @FXML
-    Button twoZero;
-    @FXML
-    Button twoOne;
-    @FXML
-    Button twoTwo;
+    Button zeroZero,zeroOne,zeroTwo,oneZero,oneOne,oneTwo,twoZero,twoOne,twoTwo;
     @FXML
     Button resetButton;
     @FXML
