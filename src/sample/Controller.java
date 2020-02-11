@@ -4,6 +4,9 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.MenuButton;
+import javafx.scene.control.MenuItem;
+import javafx.stage.Stage;
 
 public class Controller {
 
@@ -41,6 +44,12 @@ public class Controller {
     Button resetButton;
     @FXML
     Button playButton;
+    @FXML
+    MenuButton gameType;
+    @FXML
+    MenuItem playerVsPlayer;
+    @FXML
+    MenuItem playerVsAi;
 
     private boolean firstPlayer = true;
 
@@ -62,7 +71,23 @@ public class Controller {
     void checkWinner(){                   //TESTING OUT - We could check the winner like this (or find a better way)
 
         if(zeroZero.getText().equals(zeroOne.getText()) && zeroOne.getText().equals(zeroTwo.getText())){
-            System.out.println("YAY");
+            System.out.println("Row 1");
+        }
+        if(oneZero.getText().equals(oneOne.getText()) && oneOne.getText().equals(oneTwo.getText())){
+            System.out.println("Row 2");
+        }
+        if(twoZero.getText().equals(twoOne.getText()) && twoOne.getText().equals(twoTwo.getText())){
+            System.out.println("Row 3");
+        }
+
+        if(zeroZero.getText().equals(oneZero.getText()) && oneZero.getText().equals(twoZero.getText())){
+            System.out.println("Col 1");
+        }
+        if(zeroZero.getText().equals(zeroOne.getText()) && zeroOne.getText().equals(zeroTwo.getText())){
+            System.out.println("Col 2");
+        }
+        if(zeroZero.getText().equals(zeroOne.getText()) && zeroOne.getText().equals(zeroTwo.getText())){
+            System.out.println("Col 3");
         }
 
     }
@@ -82,4 +107,21 @@ public class Controller {
         System.out.println("Testing " + testPlay + " Button");
 
     }
+    public void setPlayerVsPlayer(ActionEvent vsPlayer){
+        String testVsPlayer;
+        MenuItem newVsPlayerButton = (MenuItem) vsPlayer.getTarget();
+        testVsPlayer = newVsPlayerButton.getText();
+        System.out.println("Testing " + testVsPlayer + " Button");
+        gameType.setText(testVsPlayer);
+    }
+
+    public void setPlayerVsAi(ActionEvent vsAi){
+        String testVsAi;
+        MenuItem newVsAiButton = (MenuItem) vsAi.getTarget();
+        testVsAi = newVsAiButton.getText();
+        System.out.println("Testing " + testVsAi + " Button");
+        gameType.setText(testVsAi);
+
+    }
+
 }
