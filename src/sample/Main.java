@@ -10,17 +10,19 @@ import javafx.stage.Stage;
 public class Main extends Application {
 
     @Override
-    public void start(Stage primaryStage) throws Exception{
+    public void start(Stage primaryStage) throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("sample.fxml"));
         primaryStage.setTitle("Tic-Tac-Toe");
         primaryStage.setScene(new Scene(root, 600, 400));
         root.getStylesheets().add("test.css");
         //root.getStylesheets().add(getClass().getResource("test.css").toExternalForm());
         primaryStage.show();
-        //COMMENTS
+
     }
 
     public static void main(String[] args) {
         launch(args);
+
     }
+
 }
