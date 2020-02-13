@@ -2,10 +2,12 @@ package sample;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuButton;
 import javafx.scene.control.MenuItem;
+import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 
 public class Controller {
@@ -50,57 +52,52 @@ public class Controller {
     MenuItem playerVsPlayer;
     @FXML
     MenuItem playerVsAi;
+    @FXML
+    GridPane gridPane;
+
+    public int[][] board = new int[3][3];
 
     private boolean firstPlayer = true;
 
     public void onClicked(ActionEvent Event) {
         Button clickedButton = (Button) Event.getTarget();  //Stores the button being pressed
         String buttonLabel = clickedButton.getText();       //Stores the button's Text (which starts off blank)
-
         if ("".equals(buttonLabel) && firstPlayer){       //Checking if button Text is empty and if its player 1's turn
             clickedButton.setText("X");                   //Makes the empty buttons Text into an "X"
             firstPlayer = false;                          //Switches players turn
-            double x = clickedButton.getLayoutX();  //DOESNT WORK RIGHT
-            double y = clickedButton.getLayoutY();  //DOESNT WORK RIGHT
-            System.out.println("COORDINATES " + x + " " + y + " "); //DOESNT WORK RIGHT
+            int x = GridPane.getRowIndex(clickedButton);
+            int y = GridPane.getColumnIndex(clickedButton);
+            board[x][y] = 1;
+            System.out.println(" Row: " + x + " Col: " + y);
         }
+
         else if("".equals(buttonLabel) && !firstPlayer){  //Checking if button Text is empty and if its player 2's turn
             clickedButton.setText("O");                   //Makes the empty buttons Text into an "O"
             firstPlayer = true;                           //Switches players turn
+            int x = GridPane.getRowIndex(clickedButton);
+            int y = GridPane.getColumnIndex(clickedButton);
+            board[x][y] = -1;
+            System.out.println(" Row: " + x + " Col: " + y);
         }
         checkWinner();
     }
 
     void checkWinner(){                   //TESTING OUT - We could check the winner like this (or find a better way)
 
-        if(zeroZero.getText().equals(zeroOne.getText()) && zeroOne.getText().equals(zeroTwo.getText())){
-            System.out.println("Row 1");
-        }
-        if(oneZero.getText().equals(oneOne.getText()) && oneOne.getText().equals(oneTwo.getText())){
-            System.out.println("Row 2");
-        }
-        if(twoZero.getText().equals(twoOne.getText()) && twoOne.getText().equals(twoTwo.getText())){
-            System.out.println("Row 3");
-        }
 
-        if(zeroZero.getText().equals(oneZero.getText()) && oneZero.getText().equals(twoZero.getText())){
-            System.out.println("Col 1");
-        }
-        if(zeroZero.getText().equals(zeroOne.getText()) && zeroOne.getText().equals(zeroTwo.getText())){
-            System.out.println("Col 2");
-        }
-        if(zeroZero.getText().equals(zeroOne.getText()) && zeroOne.getText().equals(zeroTwo.getText())){
-            System.out.println("Col 3");
-        }
 
     }
 
     public void resetClicked(ActionEvent startOver) {       //TESTING OUT need to Fix Reset button
-        String testReset;
-        Button newStartOverButton = (Button) startOver.getTarget();
-        testReset = newStartOverButton.getText();
-        System.out.println("Testing " + testReset + " Button");
-
+        zeroZero.setText("");
+        zeroOne.setText("");
+        zeroTwo.setText("");
+        oneZero.setText("");
+        oneOne.setText("");
+        oneTwo.setText("");
+        twoZero.setText("");
+        twoOne.setText("");
+        twoTwo.setText("");
     }
 
     public void playClicked(ActionEvent playGame) {       //TESTING OUT need to fix Play button
