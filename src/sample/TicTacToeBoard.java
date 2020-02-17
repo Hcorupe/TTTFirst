@@ -1,9 +1,9 @@
 package sample;
 
 import java.util.Observable;
-import java.util.Observer;
 
-public class TicTacToeBoard extends Observable {
+public class TicTacToeBoard extends Observable{
+
 
     private int positionX;
     private int positionY;
@@ -11,10 +11,9 @@ public class TicTacToeBoard extends Observable {
     private boolean isWinner;
     private boolean isOver;
     //private PlayerBehavior[][] Board;
-    private char[][] Board;
+    public char[][] Board = new char[3][3];
 
     public TicTacToeBoard() {
-
         for (int i = 0; i < Board.length; i++) {
             for (int j = 0; j < Board.length; j++) {
                 Board[i][j] = ' ';
@@ -68,9 +67,25 @@ public class TicTacToeBoard extends Observable {
     }
 
     public boolean isFree(int positionX, int positionY){
-        return Board[positionX][positionY] == ' ';
-
+        if(Board[positionX][positionY] == 'X') {
+            System.out.println("TRUEE");
+            return true;
+        }
+        else{
+            System.out.println("FALSE");
+            return false;
+            }
     }
+
+    public void seeBoard(){
+        for (int i = 0; i < Board.length; i++) {
+            for (int j = 0; j < Board.length; j++) {
+               System.out.print("Board " + Board[i][j]);
+            }
+            System.out.println();
+        }
+    }
+
 
 }
 

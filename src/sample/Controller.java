@@ -36,11 +36,6 @@ public class Controller {
     MenuItem playerVsPlayer;
     @FXML
     MenuItem playerVsAi;
-    @FXML
-    GridPane gridPane;
-
-    public int[][] board = new int[3][3];
-
     private boolean firstPlayer = true;
 
     public void onClicked(ActionEvent Event) {
@@ -51,7 +46,6 @@ public class Controller {
             firstPlayer = false;                          //Switches players turn
             int x = GridPane.getRowIndex(clickedButton);
             int y = GridPane.getColumnIndex(clickedButton);
-            board[x][y] = 1;
             System.out.println(" Row: " + x + " Col: " + y);
         }
 
@@ -60,16 +54,8 @@ public class Controller {
             firstPlayer = true;                           //Switches players turn
             int x = GridPane.getRowIndex(clickedButton);
             int y = GridPane.getColumnIndex(clickedButton);
-            board[x][y] = -1;
             System.out.println(" Row: " + x + " Col: " + y);
         }
-        checkWinner();
-    }
-
-    void checkWinner(){                   //TESTING OUT - We could check the winner like this (or find a better way)
-
-
-
     }
 
     public void resetClicked(ActionEvent startOver) {       //TESTING OUT need to Fix Reset button
@@ -83,12 +69,13 @@ public class Controller {
         twoOne.setText("");
         twoTwo.setText("");
     }
-
     public void playClicked(ActionEvent playGame) {       //TESTING OUT need to fix Play button
+        int o = 0;
         String testPlay;
         Button newPlayButton = (Button) playGame.getTarget();
         testPlay = newPlayButton.getText();
         System.out.println("Testing " + testPlay + " Button");
+        whoClicked(o);
 
     }
     public void setPlayerVsPlayer(ActionEvent vsPlayer){
@@ -106,6 +93,10 @@ public class Controller {
         System.out.println("Testing " + testVsAi + " Button");
         gameType.setText(testVsAi);
 
+    }
+    public int whoClicked(int x){
+        x += 1;
+        return x;
     }
 
 }
