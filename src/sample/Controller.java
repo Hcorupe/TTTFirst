@@ -10,6 +10,8 @@ import javafx.scene.control.MenuItem;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 
+import java.util.Observer;
+
 public class Controller {
 
     /*              GAME BOARD

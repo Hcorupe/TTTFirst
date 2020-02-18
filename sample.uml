@@ -3,34 +3,26 @@
   <ID>JAVA</ID>
   <OriginalElement>sample</OriginalElement>
   <nodes>
-    <node x="490.5" y="103.0">sample.Player</node>
-    <node x="668.0" y="0.0">sample.AIBehavior</node>
-    <node x="477.0" y="0.0">sample.PlayerBehavior</node>
-    <node x="287.0" y="622.0">sample.Main</node>
-    <node x="273.0" y="0.0">sample.TicTacToeBoard</node>
-    <node x="668.0" y="103.0">sample.AI</node>
+    <node x="289.5" y="0.0">sample.PlayerBehavior</node>
+    <node x="450.0" y="450.0">sample.Main</node>
+    <node x="0.0" y="450.0">sample.TicTacToeBoard</node>
+    <node x="256.0" y="125.0">sample.AI</node>
     <node x="0.0" y="0.0">sample.Controller</node>
-    <node x="0.0" y="622.0">sample.TicTacToeController</node>
+    <node x="203.0" y="450.0">sample.TicTacToeController</node>
   </nodes>
   <notes />
   <edges>
-    <edge source="sample.AI" target="sample.AIBehavior">
-      <point x="0.0" y="-26.5" />
-      <point x="0.0" y="26.5" />
-    </edge>
-    <edge source="sample.Player" target="sample.PlayerBehavior">
-      <point x="0.0" y="-26.5" />
-      <point x="0.0" y="26.5" />
+    <edge source="sample.AI" target="sample.PlayerBehavior">
+      <point x="0.0" y="-37.5" />
+      <point x="0.0" y="37.5" />
     </edge>
   </edges>
-  <settings layout="Hierarchic Group" zoom="1.0" x="154.5" y="376.0" />
-  <SelectedNodes />
+  <settings layout="Hierarchic Group" zoom="0.5804274465691789" x="548.4932170542636" y="424.5" />
+  <SelectedNodes>
+    <node>sample.TicTacToeBoard</node>
+  </SelectedNodes>
   <Categories>
     <Category>Fields</Category>
-    <Category>Constructors</Category>
-    <Category>Methods</Category>
-    <Category>Properties</Category>
-    <Category>Inner Classes</Category>
   </Categories>
   <SCOPE>All</SCOPE>
   <VISIBILITY>private</VISIBILITY>
