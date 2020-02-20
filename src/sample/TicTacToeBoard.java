@@ -13,12 +13,9 @@ public class TicTacToeBoard extends Observable{
     //private PlayerBehavior[][] Board;
     public char[][] Board = new char[3][3];
 
-<<<<<<< HEAD
-    public TicTacToeBoard() {
-=======
-    public TicTacToeBoard() {                       //init and sets board to ' '
 
->>>>>>> 2d9098dfc352b0d59b9c130769f54700f5db4ecd
+
+    public TicTacToeBoard() {                       //init and sets board to ' '
         for (int i = 0; i < Board.length; i++) {
             for (int j = 0; j < Board.length; j++) {
                 Board[i][j] = ' ';
