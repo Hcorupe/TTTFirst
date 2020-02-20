@@ -20,6 +20,32 @@ public class TicTacToeController implements Observer {
         board.addObserver(this);
     }
 
+    public TicTacToeController() {
+
+    }
+
+    public void playerVsPlayer(PlayerBehavior[] players){
+        board = new TicTacToeBoard();
+        players[0] = new Human('X',board);
+        players[1] = new Human('o',board);
+        currentPlayerTurn = 0;
+
+        players[0].addObserver(this);
+        players[1].addObserver(this);
+        board.addObserver(this);
+
+    }
+    public void playerVsAI(PlayerBehavior[] players){
+        board = new TicTacToeBoard();
+        players[0] = new Human('X',board);
+        players[1] = new AI('o',board);
+        currentPlayerTurn = 0;
+
+        players[0].addObserver(this);
+        players[1].addObserver(this);
+        board.addObserver(this);
+    }
+
     public void startGame(){
         players[currentPlayerTurn].move();
     }
@@ -31,7 +57,6 @@ public class TicTacToeController implements Observer {
         } else { processPlayerUpdate();
         }
     }
-
 
     private void processBoardUpdate() {
         if (board.isOver()) {

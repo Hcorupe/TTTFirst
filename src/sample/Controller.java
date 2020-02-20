@@ -2,13 +2,11 @@ package sample;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.Node;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import javafx.scene.control.MenuButton;
 import javafx.scene.control.MenuItem;
 import javafx.scene.layout.GridPane;
-import javafx.stage.Stage;
+import org.w3c.dom.events.EventException;
 
 public class Controller {
 
@@ -36,7 +34,14 @@ public class Controller {
     MenuItem playerVsPlayer;
     @FXML
     MenuItem playerVsAi;
+
+    TicTacToeController control = new TicTacToeController();
+    TicTacToeBoard game = new TicTacToeBoard();
     private boolean firstPlayer = true;
+
+    char token;     //Either x or o's turn
+    int posX;
+    int posY;
 
     public void onClicked(ActionEvent Event) {
         Button clickedButton = (Button) Event.getTarget();  //Stores the button being pressed
@@ -70,33 +75,28 @@ public class Controller {
         twoTwo.setText("");
     }
     public void playClicked(ActionEvent playGame) {       //TESTING OUT need to fix Play button
-        int o = 0;
         String testPlay;
         Button newPlayButton = (Button) playGame.getTarget();
         testPlay = newPlayButton.getText();
         System.out.println("Testing " + testPlay + " Button");
-        whoClicked(o);
-
     }
     public void setPlayerVsPlayer(ActionEvent vsPlayer){
+        PlayerBehavior[] players = new PlayerBehavior[2];
         String testVsPlayer;
         MenuItem newVsPlayerButton = (MenuItem) vsPlayer.getTarget();
         testVsPlayer = newVsPlayerButton.getText();
         System.out.println("Testing " + testVsPlayer + " Button");
         gameType.setText(testVsPlayer);
+        control.playerVsPlayer(players);
     }
-
     public void setPlayerVsAi(ActionEvent vsAi){
+        PlayerBehavior[] players = new PlayerBehavior[2];
         String testVsAi;
         MenuItem newVsAiButton = (MenuItem) vsAi.getTarget();
         testVsAi = newVsAiButton.getText();
         System.out.println("Testing " + testVsAi + " Button");
         gameType.setText(testVsAi);
-
-    }
-    public int whoClicked(int x){
-        x += 1;
-        return x;
+        control.playerVsAI(players);
     }
 
 }

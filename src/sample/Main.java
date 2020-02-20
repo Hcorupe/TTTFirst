@@ -20,18 +20,6 @@ public class Main extends Application {
     }
     
     public static void main(String[] args) {
-        TicTacToeBoard board = new TicTacToeBoard();
-        PlayerBehavior[] players = new PlayerBehavior[2];
-        TicTacToeController game = new TicTacToeController(players);
-        Controller control = new Controller();
-        int test = 0;
-        for(int t = 0; t < 10;t++) {
-            test = control.whoClicked(test);
-            System.out.println(test);
-        }
-        board.seeBoard();
-
-
         launch(args);
     }
 }

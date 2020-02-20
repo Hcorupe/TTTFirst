@@ -2,8 +2,9 @@ package sample;
 
 import java.util.Observable;
 
-public class TicTacToeBoard extends Observable{
+import java.util.Observer;
 
+public class TicTacToeBoard extends Observable{
 
     private int positionX;
     private int positionY;
@@ -68,7 +69,7 @@ public class TicTacToeBoard extends Observable{
 
     public boolean isFree(int positionX, int positionY){
         if(Board[positionX][positionY] == 'X') {
-            System.out.println("TRUEE");
+            System.out.println("TRUE");
             return true;
         }
         else{
@@ -84,6 +85,7 @@ public class TicTacToeBoard extends Observable{
             }
             System.out.println();
         }
+        notifyObservers();
     }
 
 
