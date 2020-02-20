@@ -8,6 +8,8 @@ import javafx.scene.control.MenuItem;
 import javafx.scene.layout.GridPane;
 import org.w3c.dom.events.EventException;
 
+import java.util.Observer;
+
 public class Controller {
 
     /*              GAME BOARD

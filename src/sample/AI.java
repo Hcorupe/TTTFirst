@@ -19,7 +19,6 @@ public class AI extends PlayerBehavior {
             this.otherplayer = 'X';
         }
 
-
     @Override
     public void move() {
 
