@@ -54,6 +54,8 @@ public class Controller {
             int x = GridPane.getRowIndex(clickedButton);
             int y = GridPane.getColumnIndex(clickedButton);
             System.out.println(" Row: " + x + " Col: " + y);
+            game.MoveMarked(x,y,'X');
+            game.seeBoard();
         }
 
         else if("".equals(buttonLabel) && !firstPlayer){  //Checking if button Text is empty and if its player 2's turn
@@ -62,6 +64,8 @@ public class Controller {
             int x = GridPane.getRowIndex(clickedButton);
             int y = GridPane.getColumnIndex(clickedButton);
             System.out.println(" Row: " + x + " Col: " + y);
+            game.MoveMarked(x,y,'O');
+            game.seeBoard();
         }
     }
 

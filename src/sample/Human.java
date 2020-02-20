@@ -19,7 +19,6 @@ public class Human extends PlayerBehavior {
 
     @Override
     public void move() {
-        
 
     }
 

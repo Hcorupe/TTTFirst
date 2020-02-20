@@ -97,7 +97,6 @@ public class TicTacToeBoard extends Observable{
     public void MoveMarked(int positionX, int positionY, char player) {  //Takes in posX posY and player
         Board[positionX][positionY] = player;                           // char (symbol X or O) to be placed on board.
 
-
     }
     public void addObserver() {
     }
@@ -116,7 +115,7 @@ public class TicTacToeBoard extends Observable{
     public void seeBoard(){
         for (int i = 0; i < Board.length; i++) {
             for (int j = 0; j < Board.length; j++) {
-               System.out.print("Board " + Board[i][j]);
+               System.out.print("Board: " + Board[i][j] + " | ");
             }
             System.out.println();
         }
