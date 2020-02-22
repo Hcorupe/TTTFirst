@@ -1,9 +1,19 @@
 package sample;
 
-
 import java.util.Observable;
+//subject
+interface PlayerBehavior {
 
-abstract class PlayerBehavior extends Observable {
+    void addObserver();
+    void removeObserver();
+    void update();
+    void notifyObserver();
+    void move();
+}
+
+/*
+
+abstract class PlayerBehavior {
 
     protected char symbol;
     protected TicTacToeBoard board;
@@ -22,3 +32,6 @@ abstract class PlayerBehavior extends Observable {
     public abstract void move();
 
 }
+
+
+ */

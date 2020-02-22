@@ -1,23 +1,50 @@
 package sample;
 
+import java.util.Observer;
+
 import static java.lang.Integer.max;
 import static java.lang.Integer.min;
 
-public class AI extends PlayerBehavior {
+public class AI implements PlayerBehavior {
 
     TicTacToeBoard TicTacToeBoard;
     char otherplayer;
+    char symbol;
+    int currentPlayerTurn;
+    TicTacToeBoard board;
 
+    public AI(char symbol, TicTacToeBoard board ,int currentPlayerTurn) {
 
-    public AI(char symbol, TicTacToeBoard board) {
-
-        super(symbol, board);
+        this.symbol = symbol;
+        this.board = board;
+        //super(symbol, board);
         if (this.symbol == 'X') {
             this.otherplayer = 'O';
 
         } else
             this.otherplayer = 'X';
         }
+
+
+    @Override
+    public void addObserver() {
+
+    }
+
+    @Override
+    public void removeObserver() {
+
+    }
+
+    @Override
+    public void update() {
+
+    }
+
+    @Override
+    public void notifyObserver() {
+
+    }
 
     @Override
     public void move() {
@@ -31,7 +58,7 @@ public class AI extends PlayerBehavior {
             for (int y = 0; y < 2; y++) {
                 if (board.isFree(x, y)) {
                     TicTacToeBoard newBoard = new TicTacToeBoard(board);
-                    val = minimax(newBoard, 100, true);
+                    val = minimax(newBoard, 3, true);
                     if (val > curmax) {
                         curmax = val;
                         moveX = x;

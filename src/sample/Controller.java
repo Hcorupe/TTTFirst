@@ -1,18 +1,21 @@
 package sample;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.MenuButton;
-import javafx.scene.control.MenuItem;
+import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
 import java.util.Observer;
 
-public class Controller {
+public class Controller implements UIBoardObserver{
 
     /*              GAME BOARD
      *              |       |
@@ -57,7 +60,10 @@ public class Controller {
     @FXML
     GridPane gridPane;
 
-    public int[][] board = new int[3][3];
+    private int currentPlayerTurn = 0;
+    Human human;
+
+    ArrayList<Observer> myobservers = new ArrayList<>();
 
     private boolean firstPlayer = true;
 
@@ -69,8 +75,9 @@ public class Controller {
             firstPlayer = false;                          //Switches players turn
             int x = GridPane.getRowIndex(clickedButton);
             int y = GridPane.getColumnIndex(clickedButton);
-            board[x][y] = 1;
+            //board[x][y] = 1;
             System.out.println(" Row: " + x + " Col: " + y);
+            //board.MoveMarked(x,y,'X');
         }
 
         else if("".equals(buttonLabel) && !firstPlayer){  //Checking if button Text is empty and if its player 2's turn
@@ -78,17 +85,13 @@ public class Controller {
             firstPlayer = true;                           //Switches players turn
             int x = GridPane.getRowIndex(clickedButton);
             int y = GridPane.getColumnIndex(clickedButton);
-            board[x][y] = -1;
+            //board[x][y] = -1;
             System.out.println(" Row: " + x + " Col: " + y);
+            //board.MoveMarked(x,y,'O');
         }
-        checkWinner();
+        //ticTacToeBoard.isOver();
     }
 
-    void checkWinner(){                   //TESTING OUT - We could check the winner like this (or find a better way)
-
-
-
-    }
 
     public void resetClicked(ActionEvent startOver) {       //TESTING OUT need to Fix Reset button
         zeroZero.setText("");
@@ -106,6 +109,8 @@ public class Controller {
         String testPlay;
         Button newPlayButton = (Button) playGame.getTarget();
         testPlay = newPlayButton.getText();
+        //if(newPlayButton.equals(playerVsPlayer))
+            //controller.startGame();
         System.out.println("Testing " + testPlay + " Button");
 
     }
@@ -126,4 +131,35 @@ public class Controller {
 
     }
 
+
+    @Override
+    public void addObserver(Observer o) {
+        this.myobservers.add(o);
+    }
+
+    @Override
+    public void removeObserver() {
+
+    }
+
+    @Override
+    public void update(Human human) {
+        if(this.currentPlayerTurn == currentPlayerTurn){
+            move();
+            this.currentPlayerTurn++;
+            notifyObserver();
+        }
+    }
+
+    @Override
+    public void notifyObserver() {
+        for (Observer o : this.myobservers) {
+            o.update(o);
+        }
+    }
+
+    @Override
+    public void move() {
+
+    }
 }
