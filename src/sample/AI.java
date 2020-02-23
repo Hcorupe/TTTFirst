@@ -52,17 +52,18 @@ public class AI implements PlayerBehavior {
 
     @Override
     public void move() {
-
         int moveX = -1;
         int moveY = -1;
         int curmax = -10001;
         int val = -10000;
 
-        for (int x = 0; x < 2; x++) {
-            for (int y = 0; y < 2; y++) {
+        for (int x = 0; x <= 2; x++) {
+            for (int y = 0; y <= 2; y++) {
+                System.out.println(x + " " + y + " "+ board.isFree(x,y));
                 if (board.isFree(x, y)) {
                     TicTacToeBoard newBoard = new TicTacToeBoard(board);
-                    val = minimax(newBoard, 10, true);
+                    newBoard.MoveMarked(x, y, this.symbol);
+                    val = minimax(newBoard, 100, false);
                     if (val > curmax) {
                         curmax = val;
                         moveX = x;
@@ -88,8 +89,8 @@ public class AI implements PlayerBehavior {
 
         if (maximizingPlayer) {
             maxEval = -10000;
-            for (int i = 0; i < 2; i++) {
-                for (int j = 0; j < 2; j++) {
+            for (int i = 0; i <= 2; i++) {
+                for (int j = 0; j <= 2; j++) {
                     if (ticTacToeBoard.isFree(i, j)) {
                         TicTacToeBoard newBoard = new TicTacToeBoard(ticTacToeBoard);  //clone
                         newBoard.MoveMarked(i, j, this.symbol);
@@ -102,19 +103,16 @@ public class AI implements PlayerBehavior {
 
         } else {
             minEval = 10000;
-            for (int i = 0; i < 2; i++) {
-                for (int j = 0; j < 2; j++) {
+            for (int i = 0; i <= 2; i++) {
+                for (int j = 0; j <= 2; j++) {
                     if (ticTacToeBoard.isFree(i, j)) {
                         TicTacToeBoard newBoard = new TicTacToeBoard(ticTacToeBoard);
                         newBoard.MoveMarked(i, j, this.otherplayer);
-                        minEval = min(minEval, minimax(newBoard, depth - 1, false));
+                        minEval = min(minEval, minimax(newBoard, depth - 1, true));
                     }
-
                 }
             }
             return minEval;
-
-
         }
 
     }

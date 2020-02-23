@@ -16,7 +16,7 @@ public class TicTacToeController implements GameObserver {
         board = new TicTacToeBoard();
         this.controller = controller;
         players[0] = new Human('X',board,currentPlayerTurn, controller);
-        players[1] = new AI('o',board,currentPlayerTurn);
+        players[1] = new AI('O',board,currentPlayerTurn);
         currentPlayerTurn = 0;
         observers = new ArrayList<>();
         players[0].addObserver(this);
