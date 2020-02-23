@@ -4,23 +4,24 @@ import javafx.beans.Observable;
 
 import java.util.*;
 
-public class TicTacToeController implements GameObserver,PlayerBehavior {
+public class TicTacToeController implements GameObserver {
 
-    private PlayerBehavior[] players;
+    private PlayerBehavior[] players = new PlayerBehavior[2];
     private int currentPlayerTurn = 0;
     private TicTacToeBoard board;
     ArrayList<GameObserver> observers;
+    Controller controller;
 
-    public TicTacToeController(PlayerBehavior[] players) {
+    public TicTacToeController(Controller controller) {
         board = new TicTacToeBoard();
-        players[0] = new Human('X',board,currentPlayerTurn);
+        this.controller = controller;
+        players[0] = new Human('X',board,currentPlayerTurn, controller);
         players[1] = new AI('o',board,currentPlayerTurn);
         currentPlayerTurn = 0;
         observers = new ArrayList<>();
-
         players[0].addObserver(this);
         players[1].addObserver(this);
-        //board.addObserver(this);
+
     }
 
     public void startGame(){
@@ -28,19 +29,16 @@ public class TicTacToeController implements GameObserver,PlayerBehavior {
     }
 
     @Override
-    public void update(PlayerBehavior o, Object arg) {
-        if (o == board) {
-            processBoardUpdate();
-        } else { processPlayerUpdate();
-        }
+    public void update() {
+        System.out.println("Update getting called");
+        processPlayerUpdate();
+        controller.reDrawBoard(board);
     }
-
 
     private void processBoardUpdate() {
         if (board.isOver()) {
             char winner = board.getWinner();
             if (players[0].getSymbol() == winner) {
-
             } else if (players[1].getSymbol() == winner) {
 
             } else {
@@ -50,41 +48,16 @@ public class TicTacToeController implements GameObserver,PlayerBehavior {
     }
 
     private void processPlayerUpdate() {
-        this.currentPlayerTurn = (this.currentPlayerTurn + 1) % 2;
-        players[this.currentPlayerTurn].move();
-    }
-
-
-    @Override
-    public void addObserver(Observer o) {
-        this.observers.add((GameObserver) o);
-    }
-
-    @Override
-    public void update() {
-        if(this.currentPlayerTurn == currentPlayerTurn){
-            move();
-            this.currentPlayerTurn = currentPlayerTurn++;
-            notifyObserver();
+        if(!board.isOver()){
+            processBoardUpdate();
+            this.currentPlayerTurn = (this.currentPlayerTurn + 1) % 2;
+            players[this.currentPlayerTurn].move();
         }
-    }
 
-    @Override
-    public void notifyObserver() {
-        for (GameObserver o : this.observers) {
-            o.update();
-        }
-    }
-
-    @Override
-    public void move() {
-        players[currentPlayerTurn].move();
-    }
-
-    @Override
-    public void removeObserver() {
 
     }
+
+
 
 }
 

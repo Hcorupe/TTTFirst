@@ -11,10 +11,10 @@ public class TicTacToeBoard extends Observable {
     private boolean isWinner;
     private boolean isOver;
     //private PlayerBehavior[][] Board;
-    private char[][] Board;
+
+    private char[][] Board = new char[3][3];
 
     public TicTacToeBoard() {                       //init and sets board to ' '
-
         for (int i = 0; i < Board.length; i++) {
             for (int j = 0; j < Board.length; j++) {
                 Board[i][j] = ' ';

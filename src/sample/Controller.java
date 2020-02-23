@@ -5,17 +5,16 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Observer;
+import java.net.URL;
+import java.util.*;
 
-public class Controller implements UIBoardObserver{
+public class Controller implements UIBoardSubject, Initializable {
 
     /*              GAME BOARD
      *              |       |
@@ -60,14 +59,35 @@ public class Controller implements UIBoardObserver{
     @FXML
     GridPane gridPane;
 
+    Button[][] buttons = new Button[3][3];
+
     private int currentPlayerTurn = 0;
     Human human;
-
-    ArrayList<Observer> myobservers = new ArrayList<>();
-
+    ArrayList<UIBoardObserver> myobservers = new ArrayList<>();
     private boolean firstPlayer = true;
 
+
+    public void initialize(URL location, ResourceBundle resources){
+        buttons[0][0] = zeroZero;
+        buttons[0][1] = zeroOne;
+        buttons[0][2] = zeroTwo;
+        buttons[1][0] = oneZero;
+        buttons[1][1] = oneOne;
+        buttons[1][2] = oneTwo;
+        buttons[2][0] = twoZero;
+        buttons[2][1] = twoOne;
+        buttons[2][2] = twoTwo;
+        Main.controller(this);
+    }
+
     public void onClicked(ActionEvent Event) {
+        Button clickedButton = (Button) Event.getTarget();  //Stores the button being pressed
+        int x = GridPane.getRowIndex(clickedButton);
+        int y = GridPane.getColumnIndex(clickedButton);
+        this.notifyObserver(x,y);
+        System.out.println(" Row: " + x + " Col: " + y);
+
+        /*
         Button clickedButton = (Button) Event.getTarget();  //Stores the button being pressed
         String buttonLabel = clickedButton.getText();       //Stores the button's Text (which starts off blank)
         if ("".equals(buttonLabel) && firstPlayer){       //Checking if button Text is empty and if its player 1's turn
@@ -76,21 +96,25 @@ public class Controller implements UIBoardObserver{
             int x = GridPane.getRowIndex(clickedButton);
             int y = GridPane.getColumnIndex(clickedButton);
             //board[x][y] = 1;
+            this.notifyObserver(x,y);
             System.out.println(" Row: " + x + " Col: " + y);
-            //board.MoveMarked(x,y,'X');
+
+         */
+    }
+
+    public void reDrawBoard(TicTacToeBoard board){
+        System.out.println("Redraw is getting called ");
+        for(int x = 0; x <board.getBoard().length; x++ ){
+            for(int y = 0; y < board.getBoard().length;y++){
+                    buttons[x][y].setText(Character.toString(board.getBoard()[x][y]));
+                        System.out.println("If statement is true ");
+
+                    }
+
+
+            }
         }
 
-        else if("".equals(buttonLabel) && !firstPlayer){  //Checking if button Text is empty and if its player 2's turn
-            clickedButton.setText("O");                   //Makes the empty buttons Text into an "O"
-            firstPlayer = true;                           //Switches players turn
-            int x = GridPane.getRowIndex(clickedButton);
-            int y = GridPane.getColumnIndex(clickedButton);
-            //board[x][y] = -1;
-            System.out.println(" Row: " + x + " Col: " + y);
-            //board.MoveMarked(x,y,'O');
-        }
-        //ticTacToeBoard.isOver();
-    }
 
 
     public void resetClicked(ActionEvent startOver) {       //TESTING OUT need to Fix Reset button
@@ -131,9 +155,9 @@ public class Controller implements UIBoardObserver{
 
     }
 
-
     @Override
-    public void addObserver(Observer o) {
+    public void addObserver(UIBoardObserver o) {
+        System.out.println("Add observer Controller");
         this.myobservers.add(o);
     }
 
@@ -142,24 +166,13 @@ public class Controller implements UIBoardObserver{
 
     }
 
+
     @Override
-    public void update(Human human) {
-        if(this.currentPlayerTurn == currentPlayerTurn){
-            move();
-            this.currentPlayerTurn++;
-            notifyObserver();
+    public void notifyObserver(int x, int y) {
+        for (UIBoardObserver o : this.myobservers) {
+            System.out.println("Notify obsever" + o);
+            o.update(x,y);
         }
     }
 
-    @Override
-    public void notifyObserver() {
-        for (Observer o : this.myobservers) {
-            o.update(o);
-        }
-    }
-
-    @Override
-    public void move() {
-
-    }
 }
