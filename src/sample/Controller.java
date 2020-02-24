@@ -45,10 +45,7 @@ public class Controller implements UIBoardSubject, Initializable {
 
     Button[][] buttons = new Button[3][3];
     PlayerBehavior[][] players = new PlayerBehavior[2][2];
-<<<<<<< HEAD
 
-=======
->>>>>>> 1fa2632f9dd1f3f961bf5d40e5abdb3a2bd11659
     TicTacToeController controller;
     TicTacToeBoard board;
     private int currentPlayerTurn = 0;
@@ -74,11 +71,7 @@ public class Controller implements UIBoardSubject, Initializable {
         int y = GridPane.getColumnIndex(clickedButton);
         this.notifyObserver(x,y);
         System.out.println(" Row: " + x + " Col: " + y);
-<<<<<<< HEAD
-=======
-        
 
->>>>>>> 1fa2632f9dd1f3f961bf5d40e5abdb3a2bd11659
     }
 
     public void reDrawBoard(TicTacToeBoard board){
@@ -98,19 +91,12 @@ public class Controller implements UIBoardSubject, Initializable {
 
 
     public void resetClicked(ActionEvent Event) {       //TESTING OUT need to Fix Reset button
-
-        Button clickedButton = (Button) Event.getTarget();  //Stores the button being pressed
         start();
-        zeroZero.setText("");
-        zeroOne.setText("");
-        zeroTwo.setText("");
-        oneZero.setText("");
-        oneOne.setText("");
-        oneTwo.setText("");
-        twoZero.setText("");
-        twoOne.setText("");
-        twoTwo.setText("");
-        start();
+        for(int x = 0; x <3; x++ ){
+            for(int y = 0; y <3;y++){
+                buttons[x][y].setText("");
+            }
+        }
     }
 
     public void playClicked(ActionEvent playGame) {       //TESTING OUT need to fix Play button
