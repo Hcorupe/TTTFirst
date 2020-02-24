@@ -1,43 +1,55 @@
 package sample;
 
-import java.util.Observable;
-import java.util.Observer;
+import javafx.beans.Observable;
 
-public class TicTacToeController implements Observer {
+import java.util.*;
 
-    private PlayerBehavior[] players;
+public class TicTacToeController implements GameObserver {
+
+    private PlayerBehavior[] players = new PlayerBehavior[2];
     private int currentPlayerTurn = 0;
     private TicTacToeBoard board;
+    ArrayList<GameObserver> observers;
+    Controller controller;
+    boolean Checkplayer;
 
-    public TicTacToeController(PlayerBehavior[] players) {
-        board = new TicTacToeBoard();
-        players[0] = new Human('X',board);
-        players[1] = new AI('o',board);
+    public TicTacToeController(Controller controller,boolean Checkplayer) {
+        this.board = new TicTacToeBoard();
+        this.controller = controller;
+        players[0] = new Human('X',this.board,controller);
+        players[1] = new AI('O',this.board);
         currentPlayerTurn = 0;
-
+        observers = new ArrayList<>();
         players[0].addObserver(this);
         players[1].addObserver(this);
-        board.addObserver(this);
     }
+    public TicTacToeController(Controller controller) {
+        this.board = new TicTacToeBoard();
+        this.controller = controller;
+        players[0] = new Human('X',this.board,controller);
+        players[1] = new Human('O',this.board,controller);
+        currentPlayerTurn = 0;
+        observers = new ArrayList<>();
+        players[0].addObserver(this);
+        players[1].addObserver(this);
+    }
+
 
     public void startGame(){
         players[currentPlayerTurn].move();
     }
 
     @Override
-    public void update(Observable o, Object arg) {
-        if (o == board) {
-            processBoardUpdate();
-        } else { processPlayerUpdate();
-        }
+    public void update() {
+        System.out.println("Update getting called");
+        processPlayerUpdate();
+        controller.reDrawBoard(board);
     }
-
 
     private void processBoardUpdate() {
         if (board.isOver()) {
             char winner = board.getWinner();
             if (players[0].getSymbol() == winner) {
-
             } else if (players[1].getSymbol() == winner) {
 
             } else {
@@ -47,9 +59,14 @@ public class TicTacToeController implements Observer {
     }
 
     private void processPlayerUpdate() {
-        this.currentPlayerTurn = (this.currentPlayerTurn + 1) % 2;
-        players[this.currentPlayerTurn].move();
+        if(!board.isOver()){
+            processBoardUpdate();
+            this.currentPlayerTurn = (this.currentPlayerTurn + 1) % 2;
+            players[this.currentPlayerTurn].move();
+        }
+
     }
+
 }
 
 

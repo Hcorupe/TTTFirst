@@ -9,6 +9,7 @@ import javafx.stage.Stage;
 
 public class Main extends Application {
 
+
     @Override
     public void start(Stage primaryStage) throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("sample.fxml"));
@@ -17,9 +18,14 @@ public class Main extends Application {
         root.getStylesheets().add("test.css");
         //root.getStylesheets().add(getClass().getResource("test.css").toExternalForm());
         primaryStage.show();
+<<<<<<< HEAD
+=======
+
+>>>>>>> 1a4d0ea951fad9d02198f33ab69c84482d269ea6
     }
     
     public static void main(String[] args) {
+<<<<<<< HEAD
         TicTacToeBoard board = new TicTacToeBoard();
         PlayerBehavior[] players = new PlayerBehavior[2];
         TicTacToeController game = new TicTacToeController(players);
@@ -32,6 +38,8 @@ public class Main extends Application {
         board.seeBoard();
 
 
+=======
+>>>>>>> 1a4d0ea951fad9d02198f33ab69c84482d269ea6
         launch(args);
     }
 }
