@@ -3,8 +3,6 @@ package sample;
 import java.util.*;
 
 public class TicTacToeController implements GameObserver {
-<<<<<<< HEAD
-=======
 
     private PlayerBehavior[] players = new PlayerBehavior[2];
     private int currentPlayerTurn = 0;
@@ -51,7 +49,7 @@ public class TicTacToeController implements GameObserver {
             players[this.currentPlayerTurn].move();
         }
         else {
-                whoWon = board.getWinner();
+            whoWon = board.getWinner();
             if (players[0].getSymbol() == whoWon) {
                 System.out.println("WINNER IS: " + whoWon);
             } else if (players[1].getSymbol() == whoWon) {
@@ -64,10 +62,3 @@ public class TicTacToeController implements GameObserver {
     }
 
 }
-
-
-
-
-
-
->>>>>>> 02958e3cc04c8843042e01acf2179461daa4b0dc

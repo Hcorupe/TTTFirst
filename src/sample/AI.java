@@ -1,6 +1,4 @@
 package sample;
-<<<<<<< HEAD
-=======
 
 import java.util.ArrayList;
 import java.util.Observer;
@@ -25,7 +23,7 @@ public class AI implements PlayerBehavior {
 
         } else
             this.otherplayer = 'X';
-        }
+    }
 
     public char getSymbol() {
         return this.symbol;
@@ -111,5 +109,4 @@ public class AI implements PlayerBehavior {
             return minEval;
         }
     }
->>>>>>> 02958e3cc04c8843042e01acf2179461daa4b0dc
 }

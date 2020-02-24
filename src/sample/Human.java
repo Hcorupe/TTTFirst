@@ -2,8 +2,6 @@ package sample;
 import java.util.ArrayList;
 import java.util.Observable;
 import java.util.Observer;
-<<<<<<< HEAD
-=======
 
 public class Human implements UIBoardObserver,PlayerBehavior{
 //Sending updates to TicTacToeController
@@ -56,4 +54,3 @@ public class Human implements UIBoardObserver,PlayerBehavior{
     }
 
 }
->>>>>>> 02958e3cc04c8843042e01acf2179461daa4b0dc

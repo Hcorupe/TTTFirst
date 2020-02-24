@@ -1,5 +1,3 @@
-<<<<<<< HEAD
-=======
 package sample;
 
 import javafx.event.ActionEvent;
@@ -63,10 +61,10 @@ public class Controller implements UIBoardSubject, Initializable {
     public void reDrawBoard(TicTacToeBoard board){
         for(int x = 0; x <board.getBoard().length; x++ ){
             for(int y = 0; y < board.getBoard().length;y++){
-                    buttons[x][y].setText(Character.toString(board.getBoard()[x][y]));
-                    }
+                buttons[x][y].setText(Character.toString(board.getBoard()[x][y]));
             }
         }
+    }
 
     public void  start(){
         if(PvP){
@@ -144,4 +142,3 @@ public class Controller implements UIBoardSubject, Initializable {
     }
 
 }
->>>>>>> 02958e3cc04c8843042e01acf2179461daa4b0dc
