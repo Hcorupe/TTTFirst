@@ -54,10 +54,7 @@ public class TicTacToeController implements GameObserver {
             players[this.currentPlayerTurn].move();
         }
 
-
     }
-
-
 
 }
 
