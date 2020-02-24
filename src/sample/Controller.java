@@ -61,16 +61,12 @@ public class Controller implements UIBoardSubject, Initializable {
 
     Button[][] buttons = new Button[3][3];
     PlayerBehavior[][] players = new PlayerBehavior[2][2];
-
-
     TicTacToeController controller;
     TicTacToeBoard board;
     private int currentPlayerTurn = 0;
     Human human;
     ArrayList<UIBoardObserver> myobservers = new ArrayList<>();
-
     private boolean firstPlayer = true;
-
 
     public void initialize(URL location, ResourceBundle resources){
         buttons[0][0] = zeroZero;
@@ -82,7 +78,6 @@ public class Controller implements UIBoardSubject, Initializable {
         buttons[2][0] = twoZero;
         buttons[2][1] = twoOne;
         buttons[2][2] = twoTwo;
-
     }
 
     public void onClicked(ActionEvent Event) {
@@ -106,16 +101,15 @@ public class Controller implements UIBoardSubject, Initializable {
         }
 
         public void  start(){
-
             TicTacToeController gamecontroller = new TicTacToeController(this,true);
             gamecontroller.startGame(); // can be put in JavaFX controller
-
-
-
         }
 
 
-    public void resetClicked(ActionEvent startOver) {       //TESTING OUT need to Fix Reset button
+    public void resetClicked(ActionEvent Event) {       //TESTING OUT need to Fix Reset button
+
+        Button clickedButton = (Button) Event.getTarget();  //Stores the button being pressed
+        start();
         zeroZero.setText("");
         zeroOne.setText("");
         zeroTwo.setText("");
