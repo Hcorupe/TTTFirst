@@ -16,7 +16,7 @@ public class Human implements UIBoardObserver,PlayerBehavior{
 
     ArrayList<GameObserver> observers = new ArrayList<>();
 
-    public Human(char symbol,TicTacToeBoard board,int currentPlayerTurn,Controller controller){
+    public Human(char symbol,TicTacToeBoard board,Controller controller){
         this.symbol = symbol;
         this.board = board;
         this.currentPlayerTurn = currentPlayerTurn;

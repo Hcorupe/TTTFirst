@@ -72,15 +72,13 @@ public class TicTacToeBoard extends Observable {
         if(getWinner() != ' ')
         return true;
 
-        else if(getWinner() == ' '){
             for(int x = 0; x < Board.length; x++){
                 for(int y = 0; y < Board.length; y++){
-                    //if(!isFree(x,y))
-                    if(Board[x][y] == 'X'|| Board[x][y] == 'O');
+                    if(Board[x][y] == ' ')
+                        return false;
                 }
             }
-        }
-        return false;
+      return true;
     }
 
     public void MoveMarked(int positionX, int positionY, char player) {  //Takes in posX posY and player

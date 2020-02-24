@@ -60,10 +60,15 @@ public class Controller implements UIBoardSubject, Initializable {
     GridPane gridPane;
 
     Button[][] buttons = new Button[3][3];
+    PlayerBehavior[][] players = new PlayerBehavior[2][2];
 
+
+    TicTacToeController controller;
+    TicTacToeBoard board;
     private int currentPlayerTurn = 0;
     Human human;
     ArrayList<UIBoardObserver> myobservers = new ArrayList<>();
+
     private boolean firstPlayer = true;
 
 
@@ -77,7 +82,7 @@ public class Controller implements UIBoardSubject, Initializable {
         buttons[2][0] = twoZero;
         buttons[2][1] = twoOne;
         buttons[2][2] = twoTwo;
-        Main.controller(this);
+
     }
 
     public void onClicked(ActionEvent Event) {
@@ -87,19 +92,6 @@ public class Controller implements UIBoardSubject, Initializable {
         this.notifyObserver(x,y);
         System.out.println(" Row: " + x + " Col: " + y);
 
-        /*
-        Button clickedButton = (Button) Event.getTarget();  //Stores the button being pressed
-        String buttonLabel = clickedButton.getText();       //Stores the button's Text (which starts off blank)
-        if ("".equals(buttonLabel) && firstPlayer){       //Checking if button Text is empty and if its player 1's turn
-            clickedButton.setText("X");                   //Makes the empty buttons Text into an "X"
-            firstPlayer = false;                          //Switches players turn
-            int x = GridPane.getRowIndex(clickedButton);
-            int y = GridPane.getColumnIndex(clickedButton);
-            //board[x][y] = 1;
-            this.notifyObserver(x,y);
-            System.out.println(" Row: " + x + " Col: " + y);
-
-         */
     }
 
     public void reDrawBoard(TicTacToeBoard board){
@@ -110,11 +102,17 @@ public class Controller implements UIBoardSubject, Initializable {
                         System.out.println("If statement is true ");
 
                     }
-
-
             }
         }
 
+        public void  start(){
+
+            TicTacToeController gamecontroller = new TicTacToeController(this,true);
+            gamecontroller.startGame(); // can be put in JavaFX controller
+
+
+
+        }
 
 
     public void resetClicked(ActionEvent startOver) {       //TESTING OUT need to Fix Reset button
@@ -133,6 +131,10 @@ public class Controller implements UIBoardSubject, Initializable {
         String testPlay;
         Button newPlayButton = (Button) playGame.getTarget();
         testPlay = newPlayButton.getText();
+
+        TicTacToeController gamecontroller = new TicTacToeController(this,true);
+        gamecontroller.startGame(); // can be put in JavaFX controller
+
         //if(newPlayButton.equals(playerVsPlayer))
             //controller.startGame();
         System.out.println("Testing " + testPlay + " Button");

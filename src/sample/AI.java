@@ -15,7 +15,7 @@ public class AI implements PlayerBehavior {
     TicTacToeBoard board;
     ArrayList<GameObserver> observer = new ArrayList<>();
 
-    public AI(char symbol, TicTacToeBoard board ,int currentPlayerTurn) {
+    public AI(char symbol, TicTacToeBoard board ) {
 
         this.symbol = symbol;
         this.board = board;
@@ -83,7 +83,7 @@ public class AI implements PlayerBehavior {
         if (depth == 0 || ticTacToeBoard.isOver())
             if (ticTacToeBoard.getWinner() == this.symbol)
                 return 10000;
-            else if (ticTacToeBoard.getWinner() != this.symbol)
+            else if (ticTacToeBoard.getWinner() == this.otherplayer)
                 return -10000;
             else return 0;
 
@@ -95,7 +95,6 @@ public class AI implements PlayerBehavior {
                         TicTacToeBoard newBoard = new TicTacToeBoard(ticTacToeBoard);  //clone
                         newBoard.MoveMarked(i, j, this.symbol);
                         maxEval = max(maxEval, minimax(newBoard, depth - 1, false));
-
                     }
                 }
             }
@@ -114,6 +113,5 @@ public class AI implements PlayerBehavior {
             }
             return minEval;
         }
-
     }
 }

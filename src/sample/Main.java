@@ -8,11 +8,8 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 public class Main extends Application {
-    private static Controller controller;
 
-    public static void controller (Controller c){
-        controller = c;
-    }
+
 
     @Override
     public void start(Stage primaryStage) throws Exception {
@@ -22,8 +19,8 @@ public class Main extends Application {
         root.getStylesheets().add("test.css");
         //root.getStylesheets().add(getClass().getResource("test.css").toExternalForm());
         primaryStage.show();
-        TicTacToeController gamecontroller = new TicTacToeController(controller);
-        gamecontroller.startGame(); // can be put in JavaFX controller
+
+
 
     }
 

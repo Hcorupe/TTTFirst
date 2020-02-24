@@ -11,17 +11,17 @@ public class TicTacToeController implements GameObserver {
     private TicTacToeBoard board;
     ArrayList<GameObserver> observers;
     Controller controller;
+    boolean Checkplayer;
 
-    public TicTacToeController(Controller controller) {
-        board = new TicTacToeBoard();
+    public TicTacToeController(Controller controller,boolean Checkplayer) {
+        this.board = new TicTacToeBoard();
         this.controller = controller;
-        players[0] = new Human('X',board,currentPlayerTurn, controller);
-        players[1] = new AI('O',board,currentPlayerTurn);
+        players[0] = new Human('X',this.board,controller);
+        players[1] = new AI('O',this.board);
         currentPlayerTurn = 0;
         observers = new ArrayList<>();
         players[0].addObserver(this);
         players[1].addObserver(this);
-
     }
 
     public void startGame(){
