@@ -6,12 +6,9 @@ import java.util.Observer;
 public class Human implements UIBoardObserver,PlayerBehavior{
 //Sending updates to TicTacToeController
     //getting updates from Controller
-    int moveX;
-    int moveY;
+
     char symbol;
-    Controller controller;
     TicTacToeBoard board;
-    int currentPlayerTurn;
     boolean isMyMove;
 
     ArrayList<GameObserver> observers = new ArrayList<>();
@@ -19,7 +16,6 @@ public class Human implements UIBoardObserver,PlayerBehavior{
     public Human(char symbol,TicTacToeBoard board,Controller controller){
         this.symbol = symbol;
         this.board = board;
-        this.currentPlayerTurn = currentPlayerTurn;
         controller.addObserver(this);
     }
 
@@ -29,7 +25,6 @@ public class Human implements UIBoardObserver,PlayerBehavior{
 
     @Override
     public void update(int x, int y) {
-        System.out.println("Human Update call");
         if(isMyMove && board.isFree(x,y)){
             board.MoveMarked(x,y,symbol);
             isMyMove = false;
@@ -58,25 +53,4 @@ public class Human implements UIBoardObserver,PlayerBehavior{
         isMyMove = true;
     }
 
-
 }
-
-/*
-
-public class Human extends PlayerBehavior {
-    int moveX;
-    int moveY;
-    Controller controller;
-
-
-    public Human(char symbol, TicTacToeBoard board) {
-        super(symbol, board);
-    }
-
-    @Override
-    public void move() {
-        board.MoveMarked(moveX, moveY, this.symbol);
-    }
-
-}
-*/

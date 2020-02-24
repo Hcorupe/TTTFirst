@@ -8,10 +8,8 @@ import static java.lang.Integer.min;
 
 public class AI implements PlayerBehavior {
 
-    TicTacToeBoard TicTacToeBoard;
     char otherplayer;
     char symbol;
-    int currentPlayerTurn;
     TicTacToeBoard board;
     ArrayList<GameObserver> observer = new ArrayList<>();
 
@@ -26,8 +24,6 @@ public class AI implements PlayerBehavior {
         } else
             this.otherplayer = 'X';
         }
-
-
 
     public char getSymbol() {
         return this.symbol;
@@ -59,7 +55,6 @@ public class AI implements PlayerBehavior {
 
         for (int x = 0; x <= 2; x++) {
             for (int y = 0; y <= 2; y++) {
-                System.out.println(x + " " + y + " "+ board.isFree(x,y));
                 if (board.isFree(x, y)) {
                     TicTacToeBoard newBoard = new TicTacToeBoard(board);
                     newBoard.MoveMarked(x, y, this.symbol);

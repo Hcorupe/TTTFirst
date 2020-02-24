@@ -1,7 +1,5 @@
 package sample;
 
-import javafx.beans.Observable;
-
 import java.util.*;
 
 public class TicTacToeController implements GameObserver {
@@ -11,7 +9,7 @@ public class TicTacToeController implements GameObserver {
     private TicTacToeBoard board;
     ArrayList<GameObserver> observers;
     Controller controller;
-    boolean Checkplayer;
+    char whoWon;
 
     public TicTacToeController(Controller controller,boolean Checkplayer) {
         this.board = new TicTacToeBoard();
@@ -41,30 +39,26 @@ public class TicTacToeController implements GameObserver {
 
     @Override
     public void update() {
-        System.out.println("Update getting called");
         processPlayerUpdate();
         controller.reDrawBoard(board);
     }
 
-    private void processBoardUpdate() {
-        if (board.isOver()) {
-            char winner = board.getWinner();
-            if (players[0].getSymbol() == winner) {
-            } else if (players[1].getSymbol() == winner) {
-
-            } else {
-                //draw
-            }
-        }
-    }
-
     private void processPlayerUpdate() {
         if(!board.isOver()){
-            processBoardUpdate();
             this.currentPlayerTurn = (this.currentPlayerTurn + 1) % 2;
             players[this.currentPlayerTurn].move();
         }
-
+        else {
+                whoWon = board.getWinner();
+            if (players[0].getSymbol() == whoWon) {
+                System.out.println("WINNER IS: " + whoWon);
+            } else if (players[1].getSymbol() == whoWon) {
+                System.out.println("WINNER IS: " + whoWon);
+            } else {
+                System.out.println("EVERYONE LOSES");
+            }
+            controller.disableButtons();
+        }
     }
 
 }

@@ -1,16 +1,8 @@
 package sample;
 
 import java.util.Observable;
-import java.util.Observer;
 
 public class TicTacToeBoard extends Observable {
-
-    private int positionX;
-    private int positionY;
-    private int piece;
-    private boolean isWinner;
-    private boolean isOver;
-    //private PlayerBehavior[][] Board;
 
     private char[][] Board = new char[3][3];
 
@@ -36,13 +28,8 @@ public class TicTacToeBoard extends Observable {
         return Board;
     } // gets and returns the Board
 
-    public int getPositionY() {
-        return positionY;
-    } //gets and returns positionY
-
     public char getWinner() { //check rows cols diag compare chars
                             // that are filled and return winners char that is stored in board.
-
                 if(     Board[0][0] == 'X' && Board[1][0] == 'X' && Board[2][0] == 'X' ||//Checking rows
                         Board[0][1] == 'X' && Board[1][1] == 'X' && Board[2][1] == 'X' ||//Checking rows
                         Board[0][2] == 'X' && Board[1][2] == 'X' && Board[2][2] == 'X' ||//Checking rows
@@ -68,7 +55,6 @@ public class TicTacToeBoard extends Observable {
     }
 
     public boolean isOver() {
-
         if(getWinner() != ' ')
         return true;
 
@@ -84,8 +70,6 @@ public class TicTacToeBoard extends Observable {
     public void MoveMarked(int positionX, int positionY, char player) {  //Takes in posX posY and player
         Board[positionX][positionY] = player;                           // char (symbol X or O) to be placed on board.
 
-    }
-    public void addObserver() {
     }
 
     public boolean isFree(int positionX, int positionY){

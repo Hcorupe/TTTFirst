@@ -1,16 +1,10 @@
 package sample;
 
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
-import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
-import javafx.stage.Stage;
-
 import java.net.URL;
 import java.util.*;
 
@@ -40,18 +34,9 @@ public class Controller implements UIBoardSubject, Initializable {
     MenuItem playerVsPlayer;
     @FXML
     MenuItem playerVsAi;
-    @FXML
-    GridPane gridPane;
 
     Button[][] buttons = new Button[3][3];
-    PlayerBehavior[][] players = new PlayerBehavior[2][2];
-
-    TicTacToeController controller;
-    TicTacToeBoard board;
-    private int currentPlayerTurn = 0;
-    Human human;
     ArrayList<UIBoardObserver> myobservers = new ArrayList<>();
-    private boolean firstPlayer = true;
     Boolean PvP = true;
 
     public void initialize(URL location, ResourceBundle resources){
@@ -71,45 +56,39 @@ public class Controller implements UIBoardSubject, Initializable {
         int x = GridPane.getRowIndex(clickedButton);
         int y = GridPane.getColumnIndex(clickedButton);
         this.notifyObserver(x,y);
-        System.out.println(" Row: " + x + " Col: " + y);
     }
 
     public void reDrawBoard(TicTacToeBoard board){
-        System.out.println("Redraw is getting called ");
         for(int x = 0; x <board.getBoard().length; x++ ){
             for(int y = 0; y < board.getBoard().length;y++){
                     buttons[x][y].setText(Character.toString(board.getBoard()[x][y]));
-                        System.out.println("If statement is true ");
                     }
             }
         }
 
-        public void  start(){
-            if(PvP){
-                TicTacToeController gamecontroller = new TicTacToeController(this);
-                gamecontroller.startGame(); // can be put in JavaFX controller
-                gameType.setText("Player vs Player");
-            }
-            else{
-                TicTacToeController gamecontroller = new TicTacToeController(this,true);
-                gamecontroller.startGame(); // can be put in JavaFX controller
-                gameType.setText("Player vs AI");
-            }
+    public void  start(){
+        if(PvP){
+            TicTacToeController gamecontroller = new TicTacToeController(this);
+            gamecontroller.startGame(); // can be put in JavaFX controller
+            gameType.setText("Player vs Player");
         }
+        else{
+            TicTacToeController gamecontroller = new TicTacToeController(this,true);
+            gamecontroller.startGame(); // can be put in JavaFX controller
+            gameType.setText("Player vs AI");
+        }
+    }
 
 
     public void resetClicked(ActionEvent Event) {       //TESTING OUT need to Fix Reset button
+        ableButtons();
         start();
         resetStringInButtons();
     }
 
     public void playClicked(ActionEvent playGame) {       //TESTING OUT need to fix Play button
-        String testPlay;
-        Button newPlayButton = (Button) playGame.getTarget();
-        testPlay = newPlayButton.getText();
         ableButtons();
         start();
-        System.out.println("Testing " + testPlay + " Button");
     }
     public void setPlayerVsPlayer(ActionEvent vsPlayer){
         resetStringInButtons();
@@ -130,6 +109,13 @@ public class Controller implements UIBoardSubject, Initializable {
             }
         }
     }
+    void disableButtons(){
+        for(int x = 0; x <3; x++ ){
+            for(int y = 0; y <3;y++){
+                buttons[x][y].setDisable(true);
+            }
+        }
+    }
     void resetStringInButtons(){
         for(int x = 0; x <3; x++ ){
             for(int y = 0; y <3;y++){
@@ -140,7 +126,6 @@ public class Controller implements UIBoardSubject, Initializable {
 
     @Override
     public void addObserver(UIBoardObserver o) {
-        System.out.println("Add observer Controller");
         this.myobservers.add(o);
     }
 
@@ -149,11 +134,9 @@ public class Controller implements UIBoardSubject, Initializable {
 
     }
 
-
     @Override
     public void notifyObserver(int x, int y) {
         for (UIBoardObserver o : this.myobservers) {
-            System.out.println("Notify obsever" + o);
             o.update(x,y);
         }
     }
