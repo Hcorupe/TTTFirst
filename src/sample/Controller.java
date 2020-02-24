@@ -29,23 +29,7 @@ public class Controller implements UIBoardSubject, Initializable {
      */
 
     @FXML
-    Button zeroZero;
-    @FXML
-    Button zeroOne;
-    @FXML
-    Button zeroTwo;
-    @FXML
-    Button oneZero;
-    @FXML
-    Button oneOne;
-    @FXML
-    Button oneTwo;
-    @FXML
-    Button twoZero;
-    @FXML
-    Button twoOne;
-    @FXML
-    Button twoTwo;
+    Button zeroZero,zeroOne,zeroTwo,oneZero,oneOne,oneTwo,twoZero,twoOne,twoTwo;
     @FXML
     Button resetButton;
     @FXML
@@ -61,12 +45,14 @@ public class Controller implements UIBoardSubject, Initializable {
 
     Button[][] buttons = new Button[3][3];
     PlayerBehavior[][] players = new PlayerBehavior[2][2];
+
     TicTacToeController controller;
     TicTacToeBoard board;
     private int currentPlayerTurn = 0;
     Human human;
     ArrayList<UIBoardObserver> myobservers = new ArrayList<>();
     private boolean firstPlayer = true;
+    Boolean PvP = true;
 
     public void initialize(URL location, ResourceBundle resources){
         buttons[0][0] = zeroZero;
@@ -86,8 +72,11 @@ public class Controller implements UIBoardSubject, Initializable {
         int y = GridPane.getColumnIndex(clickedButton);
         this.notifyObserver(x,y);
         System.out.println(" Row: " + x + " Col: " + y);
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> 1a4d0ea951fad9d02198f33ab69c84482d269ea6
     }
 
     public void reDrawBoard(TicTacToeBoard board){
@@ -96,60 +85,62 @@ public class Controller implements UIBoardSubject, Initializable {
             for(int y = 0; y < board.getBoard().length;y++){
                     buttons[x][y].setText(Character.toString(board.getBoard()[x][y]));
                         System.out.println("If statement is true ");
-
                     }
             }
         }
 
         public void  start(){
-            TicTacToeController gamecontroller = new TicTacToeController(this,true);
-            gamecontroller.startGame(); // can be put in JavaFX controller
+            if(PvP){
+                TicTacToeController gamecontroller = new TicTacToeController(this);
+                gamecontroller.startGame(); // can be put in JavaFX controller
+                gameType.setText("Player vs Player");
+            }
+            else{
+                TicTacToeController gamecontroller = new TicTacToeController(this,true);
+                gamecontroller.startGame(); // can be put in JavaFX controller
+                gameType.setText("Player vs AI");
+            }
         }
 
 
     public void resetClicked(ActionEvent Event) {       //TESTING OUT need to Fix Reset button
-
-        Button clickedButton = (Button) Event.getTarget();  //Stores the button being pressed
         start();
-        zeroZero.setText("");
-        zeroOne.setText("");
-        zeroTwo.setText("");
-        oneZero.setText("");
-        oneOne.setText("");
-        oneTwo.setText("");
-        twoZero.setText("");
-        twoOne.setText("");
-        twoTwo.setText("");
+        resetStringInButtons();
     }
 
     public void playClicked(ActionEvent playGame) {       //TESTING OUT need to fix Play button
         String testPlay;
         Button newPlayButton = (Button) playGame.getTarget();
         testPlay = newPlayButton.getText();
-
-        TicTacToeController gamecontroller = new TicTacToeController(this,true);
-        gamecontroller.startGame(); // can be put in JavaFX controller
-
-        //if(newPlayButton.equals(playerVsPlayer))
-            //controller.startGame();
+        ableButtons();
+        start();
         System.out.println("Testing " + testPlay + " Button");
-
     }
     public void setPlayerVsPlayer(ActionEvent vsPlayer){
-        String testVsPlayer;
-        MenuItem newVsPlayerButton = (MenuItem) vsPlayer.getTarget();
-        testVsPlayer = newVsPlayerButton.getText();
-        System.out.println("Testing " + testVsPlayer + " Button");
-        gameType.setText(testVsPlayer);
+        resetStringInButtons();
+        PvP = true;
+        start();
     }
 
     public void setPlayerVsAi(ActionEvent vsAi){
-        String testVsAi;
-        MenuItem newVsAiButton = (MenuItem) vsAi.getTarget();
-        testVsAi = newVsAiButton.getText();
-        System.out.println("Testing " + testVsAi + " Button");
-        gameType.setText(testVsAi);
+        resetStringInButtons();
+        PvP = false;
+        start();
+    }
 
+    void ableButtons(){
+        for(int x = 0; x <3; x++ ){
+            for(int y = 0; y <3;y++){
+                buttons[x][y].setDisable(false);
+            }
+        }
+    }
+    void resetStringInButtons(){
+        for(int x = 0; x <3; x++ ){
+            for(int y = 0; y <3;y++){
+                buttons[x][y].setText("");
+            }
+        }
     }
 
     @Override

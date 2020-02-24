@@ -23,6 +23,17 @@ public class TicTacToeController implements GameObserver {
         players[0].addObserver(this);
         players[1].addObserver(this);
     }
+    public TicTacToeController(Controller controller) {
+        this.board = new TicTacToeBoard();
+        this.controller = controller;
+        players[0] = new Human('X',this.board,controller);
+        players[1] = new Human('O',this.board,controller);
+        currentPlayerTurn = 0;
+        observers = new ArrayList<>();
+        players[0].addObserver(this);
+        players[1].addObserver(this);
+    }
+
 
     public void startGame(){
         players[currentPlayerTurn].move();
@@ -54,10 +65,7 @@ public class TicTacToeController implements GameObserver {
             players[this.currentPlayerTurn].move();
         }
 
-
     }
-
-
 
 }
 

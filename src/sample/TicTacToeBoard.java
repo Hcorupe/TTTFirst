@@ -51,17 +51,17 @@ public class TicTacToeBoard extends Observable {
                         Board[2][0] == 'X' && Board[2][1] == 'X' && Board[2][2] == 'X' ||//checking col
                         Board[2][0] == 'X' && Board[1][1] == 'X' && Board[0][2] == 'X' ||//Checking diag
                         Board[0][0] == 'X' && Board[1][1] == 'X' && Board[2][2] == 'X'){ //Checking diag
-                    return 'X';
+                        return 'X';
 
-                }else if (     Board[0][0] == 'O' && Board[1][0] == 'O' && Board[2][0] == 'O' ||//Checking rows
-                                Board[0][1] == 'O' && Board[1][1] == 'O' && Board[2][1] == 'O' ||//Checking rows
-                                Board[0][2] == 'O' && Board[1][2] == 'O' && Board[2][2] == 'O' ||//Checking rows
-                                Board[0][0] == 'O' && Board[0][1] == 'O' && Board[0][2] == 'O' ||//checking col
-                                Board[1][0] == 'O' && Board[1][1] == 'O' && Board[1][2] == 'O' ||//checking col
-                                Board[2][0] == 'O' && Board[2][1] == 'O' && Board[2][2] == 'O' ||//checking col
-                                Board[2][0] == 'O' && Board[1][1] == 'O' && Board[0][2] == 'O' ||//Checking diag
-                                Board[0][0] == 'O' && Board[1][1] == 'O' && Board[2][2] == 'O'){ //Checking diag
-                            return 'O';
+                }else if (  Board[0][0] == 'O' && Board[1][0] == 'O' && Board[2][0] == 'O' ||//Checking rows
+                            Board[0][1] == 'O' && Board[1][1] == 'O' && Board[2][1] == 'O' ||//Checking rows
+                            Board[0][2] == 'O' && Board[1][2] == 'O' && Board[2][2] == 'O' ||//Checking rows
+                            Board[0][0] == 'O' && Board[0][1] == 'O' && Board[0][2] == 'O' ||//checking col
+                            Board[1][0] == 'O' && Board[1][1] == 'O' && Board[1][2] == 'O' ||//checking col
+                            Board[2][0] == 'O' && Board[2][1] == 'O' && Board[2][2] == 'O' ||//checking col
+                            Board[2][0] == 'O' && Board[1][1] == 'O' && Board[0][2] == 'O' ||//Checking diag
+                            Board[0][0] == 'O' && Board[1][1] == 'O' && Board[2][2] == 'O'){ //Checking diag
+                        return 'O';
                 }else
                         return ' ';
 

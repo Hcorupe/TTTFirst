@@ -59,12 +59,6 @@ public class Human implements UIBoardObserver,PlayerBehavior{
     }
 
 
-
-
-
-
-
-
 }
 
 /*
