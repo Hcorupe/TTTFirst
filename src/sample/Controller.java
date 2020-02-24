@@ -45,13 +45,15 @@ public class Controller implements UIBoardSubject, Initializable {
 
     Button[][] buttons = new Button[3][3];
     PlayerBehavior[][] players = new PlayerBehavior[2][2];
+<<<<<<< HEAD
 
+=======
+>>>>>>> 1fa2632f9dd1f3f961bf5d40e5abdb3a2bd11659
     TicTacToeController controller;
     TicTacToeBoard board;
     private int currentPlayerTurn = 0;
     Human human;
     ArrayList<UIBoardObserver> myobservers = new ArrayList<>();
-
     private boolean firstPlayer = true;
 
     public void initialize(URL location, ResourceBundle resources){
@@ -72,6 +74,11 @@ public class Controller implements UIBoardSubject, Initializable {
         int y = GridPane.getColumnIndex(clickedButton);
         this.notifyObserver(x,y);
         System.out.println(" Row: " + x + " Col: " + y);
+<<<<<<< HEAD
+=======
+        
+
+>>>>>>> 1fa2632f9dd1f3f961bf5d40e5abdb3a2bd11659
     }
 
     public void reDrawBoard(TicTacToeBoard board){
@@ -90,7 +97,10 @@ public class Controller implements UIBoardSubject, Initializable {
         }
 
 
-    public void resetClicked(ActionEvent startOver) {       //TESTING OUT need to Fix Reset button
+    public void resetClicked(ActionEvent Event) {       //TESTING OUT need to Fix Reset button
+
+        Button clickedButton = (Button) Event.getTarget();  //Stores the button being pressed
+        start();
         zeroZero.setText("");
         zeroOne.setText("");
         zeroTwo.setText("");
