@@ -19,8 +19,6 @@ public class Main extends Application {
         //root.getStylesheets().add(getClass().getResource("test.css").toExternalForm());
         primaryStage.show();
 
-
-
     }
 
     public static void main(String[] args) {

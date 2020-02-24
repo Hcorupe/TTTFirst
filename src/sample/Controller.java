@@ -86,6 +86,7 @@ public class Controller implements UIBoardSubject, Initializable {
         int y = GridPane.getColumnIndex(clickedButton);
         this.notifyObserver(x,y);
         System.out.println(" Row: " + x + " Col: " + y);
+        
 
     }
 
