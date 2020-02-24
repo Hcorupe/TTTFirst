@@ -5,6 +5,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
+
 import java.net.URL;
 import java.util.*;
 
@@ -34,10 +35,13 @@ public class Controller implements UIBoardSubject, Initializable {
     MenuItem playerVsPlayer;
     @FXML
     MenuItem playerVsAi;
+    @FXML
+    Label winnerBox;
 
     Button[][] buttons = new Button[3][3];
     ArrayList<UIBoardObserver> myobservers = new ArrayList<>();
     Boolean PvP = true;
+    int won,loss,draw;
 
     public void initialize(URL location, ResourceBundle resources){
         buttons[0][0] = zeroZero;
@@ -53,9 +57,9 @@ public class Controller implements UIBoardSubject, Initializable {
 
     public void onClicked(ActionEvent Event) {
         Button clickedButton = (Button) Event.getTarget();  //Stores the button being pressed
-        int x = GridPane.getRowIndex(clickedButton);
-        int y = GridPane.getColumnIndex(clickedButton);
-        this.notifyObserver(x,y);
+        int x = GridPane.getRowIndex(clickedButton);        //Gets UI Input of X
+        int y = GridPane.getColumnIndex(clickedButton);     //Gets UI Input of Y
+        this.notifyObserver(x,y);                           //Notifies the Observer
     }
 
     public void reDrawBoard(TicTacToeBoard board){
@@ -66,6 +70,7 @@ public class Controller implements UIBoardSubject, Initializable {
             }
         }
 
+//start - starts the game and checks whether the user chose Player vs Player or Vs AI
     public void  start(){
         if(PvP){
             TicTacToeController gamecontroller = new TicTacToeController(this);
@@ -79,37 +84,36 @@ public class Controller implements UIBoardSubject, Initializable {
         }
     }
 
-
-    public void resetClicked(ActionEvent Event) {       //TESTING OUT need to Fix Reset button
-        ableButtons();
-        start();
+    public void resetClicked() {
+        disableButtons();
         resetStringInButtons();
     }
 
-    public void playClicked(ActionEvent playGame) {       //TESTING OUT need to fix Play button
+    public void playClicked() {
+        resetClicked();
         ableButtons();
         start();
     }
-    public void setPlayerVsPlayer(ActionEvent vsPlayer){
+    public void setPlayerVsPlayer(){
+        disableButtons();
         resetStringInButtons();
         PvP = true;
-        start();
     }
 
-    public void setPlayerVsAi(ActionEvent vsAi){
+    public void setPlayerVsAi(){
+        disableButtons();
         resetStringInButtons();
         PvP = false;
-        start();
     }
 
-    void ableButtons(){
+    void ableButtons(){             //Enables UI Buttons
         for(int x = 0; x <3; x++ ){
             for(int y = 0; y <3;y++){
                 buttons[x][y].setDisable(false);
             }
         }
     }
-    void disableButtons(){
+    void disableButtons(){      //Disables UI Buttons
         for(int x = 0; x <3; x++ ){
             for(int y = 0; y <3;y++){
                 buttons[x][y].setDisable(true);
@@ -123,6 +127,14 @@ public class Controller implements UIBoardSubject, Initializable {
             }
         }
     }
+
+    void displayWinner(int win, int lose, int tie,char token){
+        won += win;
+        loss += lose;
+        draw += tie;
+        winnerBox.setText("Won: " + won + " Loss: " + loss + " Draws: " + draw);
+    }
+
 
     @Override
     public void addObserver(UIBoardObserver o) {

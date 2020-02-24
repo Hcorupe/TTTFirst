@@ -15,10 +15,13 @@ public class Main extends Application {
         Parent root = FXMLLoader.load(getClass().getResource("sample.fxml"));
         primaryStage.setTitle("Tic-Tac-Toe");
         primaryStage.setScene(new Scene(root, 600, 400));
+        primaryStage.setMaxHeight(400);
+        primaryStage.setMaxWidth(600);
+        primaryStage.setMinHeight(400);
+        primaryStage.setMinWidth(600);
         root.getStylesheets().add("test.css");
         //root.getStylesheets().add(getClass().getResource("test.css").toExternalForm());
         primaryStage.show();
-
     }
 
     public static void main(String[] args) {

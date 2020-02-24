@@ -10,6 +10,9 @@ public class TicTacToeController implements GameObserver {
     ArrayList<GameObserver> observers;
     Controller controller;
     char whoWon;
+    int wins;
+    int loss;
+    int draws;
 
     public TicTacToeController(Controller controller,boolean Checkplayer) {
         this.board = new TicTacToeBoard();
@@ -52,12 +55,17 @@ public class TicTacToeController implements GameObserver {
                 whoWon = board.getWinner();
             if (players[0].getSymbol() == whoWon) {
                 System.out.println("WINNER IS: " + whoWon);
+                wins++;
             } else if (players[1].getSymbol() == whoWon) {
                 System.out.println("WINNER IS: " + whoWon);
+                loss++;
             } else {
                 System.out.println("EVERYONE LOSES");
+                draws++;
+
             }
             controller.disableButtons();
+            //controller.displayWinner(wins,);
         }
     }
 
