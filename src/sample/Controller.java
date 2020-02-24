@@ -52,6 +52,7 @@ public class Controller implements UIBoardSubject, Initializable {
     Human human;
     ArrayList<UIBoardObserver> myobservers = new ArrayList<>();
     private boolean firstPlayer = true;
+    Boolean PvP = true;
 
     public void initialize(URL location, ResourceBundle resources){
         buttons[0][0] = zeroZero;
@@ -71,7 +72,6 @@ public class Controller implements UIBoardSubject, Initializable {
         int y = GridPane.getColumnIndex(clickedButton);
         this.notifyObserver(x,y);
         System.out.println(" Row: " + x + " Col: " + y);
-
     }
 
     public void reDrawBoard(TicTacToeBoard board){
@@ -85,18 +85,22 @@ public class Controller implements UIBoardSubject, Initializable {
         }
 
         public void  start(){
-            TicTacToeController gamecontroller = new TicTacToeController(this,true);
-            gamecontroller.startGame(); // can be put in JavaFX controller
+            if(PvP){
+                TicTacToeController gamecontroller = new TicTacToeController(this);
+                gamecontroller.startGame(); // can be put in JavaFX controller
+                gameType.setText("Player vs Player");
+            }
+            else{
+                TicTacToeController gamecontroller = new TicTacToeController(this,true);
+                gamecontroller.startGame(); // can be put in JavaFX controller
+                gameType.setText("Player vs AI");
+            }
         }
 
 
     public void resetClicked(ActionEvent Event) {       //TESTING OUT need to Fix Reset button
         start();
-        for(int x = 0; x <3; x++ ){
-            for(int y = 0; y <3;y++){
-                buttons[x][y].setText("");
-            }
-        }
+        resetStringInButtons();
     }
 
     public void playClicked(ActionEvent playGame) {       //TESTING OUT need to fix Play button
@@ -104,36 +108,32 @@ public class Controller implements UIBoardSubject, Initializable {
         Button newPlayButton = (Button) playGame.getTarget();
         testPlay = newPlayButton.getText();
         ableButtons();
-
-        TicTacToeController gamecontroller = new TicTacToeController(this,true);
-        gamecontroller.startGame(); // can be put in JavaFX controller
-
-        //if(newPlayButton.equals(playerVsPlayer))
-            //controller.startGame();
+        start();
         System.out.println("Testing " + testPlay + " Button");
-
     }
     public void setPlayerVsPlayer(ActionEvent vsPlayer){
-        String testVsPlayer;
-        MenuItem newVsPlayerButton = (MenuItem) vsPlayer.getTarget();
-        testVsPlayer = newVsPlayerButton.getText();
-        System.out.println("Testing " + testVsPlayer + " Button");
-        gameType.setText(testVsPlayer);
+        resetStringInButtons();
+        PvP = true;
+        start();
     }
 
     public void setPlayerVsAi(ActionEvent vsAi){
-        String testVsAi;
-        MenuItem newVsAiButton = (MenuItem) vsAi.getTarget();
-        testVsAi = newVsAiButton.getText();
-        System.out.println("Testing " + testVsAi + " Button");
-        gameType.setText(testVsAi);
-
+        resetStringInButtons();
+        PvP = false;
+        start();
     }
 
     void ableButtons(){
         for(int x = 0; x <3; x++ ){
             for(int y = 0; y <3;y++){
                 buttons[x][y].setDisable(false);
+            }
+        }
+    }
+    void resetStringInButtons(){
+        for(int x = 0; x <3; x++ ){
+            for(int y = 0; y <3;y++){
+                buttons[x][y].setText("");
             }
         }
     }
