@@ -134,9 +134,14 @@ public class Controller implements UIBoardSubject, Initializable {
         }
     }
 
-    public void handleFinishedGame() {
-        Alert alertBox = new Alert(Alert.AlertType.CONFIRMATION, "Game OutCome", ButtonType.OK, ButtonType.CANCEL);
-        alertBox.setContentText("The OutCome is " );
+    public void handleFinishedGame(char token, int tie) {
+        Alert alertBox = new Alert(Alert.AlertType.INFORMATION, "Game OutCome", ButtonType.OK, ButtonType.CANCEL);
+        if(tie == 1)
+        {
+            alertBox.setContentText("It was a tie!");
+        }
+        else
+        alertBox.setContentText("The Winner is " + token + " !!");
         alertBox.showAndWait();
         if(alertBox.getResult() == ButtonType.OK) {
             alertBox.close();
@@ -146,21 +151,19 @@ public class Controller implements UIBoardSubject, Initializable {
         }
     }
 
-    void displayWinner(int win, int lose, int tie,char token){
+    void displayWinner(int win, int lose, int tie,char token) {
         won += win;
         loss += lose;
         draw += tie;
         winnerBox.setText("Won: " + won + " Loss: " + loss + " Draws: " + draw);
 
-<<<<<<< HEAD
+        handleFinishedGame(token,tie);
     }
-
-=======
->>>>>>> 4da93bc4126e9e197f5cb58a2ff94a36d4fd4318
     @Override
     public void addObserver(UIBoardObserver o) {
         this.myobservers.add(o);
     }
+
     @Override
     public void removeObserver() {
 
