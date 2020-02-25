@@ -60,12 +60,12 @@ public class TicTacToeController implements GameObserver {
                 System.out.println("WINNER IS: " + whoWon);
                 loss++;
             } else {
-                System.out.println("EVERYONE LOSES");
+                System.out.println("IT's a TIE!");
                 draws++;
 
             }
             controller.disableButtons();
-            //controller.displayWinner(wins,);
+            controller.displayWinner(wins,loss,draws,whoWon);
         }
     }
 

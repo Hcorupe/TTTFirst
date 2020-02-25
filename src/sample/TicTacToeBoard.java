@@ -69,12 +69,24 @@ public class TicTacToeBoard extends Observable {
 
     public void MoveMarked(int positionX, int positionY, char player) {  //Takes in posX posY and player
         Board[positionX][positionY] = player;                           // char (symbol X or O) to be placed on board.
-
     }
 
     public boolean isFree(int positionX, int positionY){
         return Board[positionX][positionY] == ' ';
 
+    }
+    public void seeBoard(){
+        System.out.println(" " + Board[0][0] + " | " + Board[0][1] + " | "
+                + Board[0][2]);
+        System.out.println("-----------");
+        System.out.println(" " + Board[1][0] + " | " + Board[1][1] + " | "
+                + Board[1][2]);
+        System.out.println("-----------");
+        System.out.println(" " + Board[2][0] + " | " + Board[2][1] + " | "
+                + Board[2][2]);
+
+        System.out.println();
+        System.out.println();
     }
 
 }

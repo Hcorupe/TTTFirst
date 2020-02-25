@@ -60,6 +60,7 @@ public class Controller implements UIBoardSubject, Initializable {
         int x = GridPane.getRowIndex(clickedButton);        //Gets UI Input of X
         int y = GridPane.getColumnIndex(clickedButton);     //Gets UI Input of Y
         this.notifyObserver(x,y);                           //Notifies the Observer
+
     }
 
     public void reDrawBoard(TicTacToeBoard board){
@@ -85,18 +86,21 @@ public class Controller implements UIBoardSubject, Initializable {
     }
 
     public void resetClicked() {
-        disableButtons();
         resetStringInButtons();
+        disableButtons();
+        playButton.setDisable(false);
+
     }
 
     public void playClicked() {
         resetClicked();
         ableButtons();
         start();
+        playButton.setDisable(true);
     }
     public void setPlayerVsPlayer(){
-        disableButtons();
         resetStringInButtons();
+        disableButtons();
         PvP = true;
     }
 
@@ -119,6 +123,7 @@ public class Controller implements UIBoardSubject, Initializable {
                 buttons[x][y].setDisable(true);
             }
         }
+
     }
     void resetStringInButtons(){
         for(int x = 0; x <3; x++ ){
@@ -133,8 +138,8 @@ public class Controller implements UIBoardSubject, Initializable {
         loss += lose;
         draw += tie;
         winnerBox.setText("Won: " + won + " Loss: " + loss + " Draws: " + draw);
-    }
 
+    }
 
     @Override
     public void addObserver(UIBoardObserver o) {
