@@ -64,20 +64,10 @@ public class TicTacToeController implements GameObserver {
             } else {
                 System.out.println("IT's a TIE!");
                 draws++;
-
-
             }
             //this.controller.handleFinishedGame();
             controller.disableButtons();
             controller.displayWinner(wins,loss,draws,whoWon);
         }
-
     }
-
 }
-
-
-
-
-
-

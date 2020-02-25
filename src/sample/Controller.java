@@ -61,7 +61,6 @@ public class Controller implements UIBoardSubject, Initializable {
         int x = GridPane.getRowIndex(clickedButton);        //Gets UI Input of X
         int y = GridPane.getColumnIndex(clickedButton);     //Gets UI Input of Y
         this.notifyObserver(x,y);                           //Notifies the Observer
-
     }
 
     public void reDrawBoard(TicTacToeBoard board){
@@ -90,7 +89,6 @@ public class Controller implements UIBoardSubject, Initializable {
         resetStringInButtons();
         disableButtons();
         playButton.setDisable(false);
-
     }
 
     public void playClicked() {
@@ -135,13 +133,13 @@ public class Controller implements UIBoardSubject, Initializable {
     }
 
     public void handleFinishedGame(char token, int tie) {
-        Alert alertBox = new Alert(Alert.AlertType.INFORMATION, "Game OutCome", ButtonType.OK, ButtonType.CANCEL);
+        Alert alertBox = new Alert(Alert.AlertType.NONE, "Game OutCome", ButtonType.OK, ButtonType.CANCEL);
         if(tie == 1)
         {
-            alertBox.setContentText("It was a tie!");
+            alertBox.setContentText("IT WAS A TIE!");
         }
         else
-        alertBox.setContentText("The Winner is " + token + " !!");
+        alertBox.setContentText("THE WINNER IS " + token + "!!");
         alertBox.showAndWait();
         if(alertBox.getResult() == ButtonType.OK) {
             alertBox.close();
@@ -150,15 +148,14 @@ public class Controller implements UIBoardSubject, Initializable {
             alertBox.close();
         }
     }
-
     void displayWinner(int win, int lose, int tie,char token) {
         won += win;
         loss += lose;
         draw += tie;
         winnerBox.setText("Won: " + won + " Loss: " + loss + " Draws: " + draw);
-
         handleFinishedGame(token,tie);
     }
+
     @Override
     public void addObserver(UIBoardObserver o) {
         this.myobservers.add(o);

@@ -48,10 +48,11 @@ public class TicTacToeBoard extends Observable {
                             Board[2][0] == 'O' && Board[2][1] == 'O' && Board[2][2] == 'O' ||//checking col
                             Board[2][0] == 'O' && Board[1][1] == 'O' && Board[0][2] == 'O' ||//Checking diag
                             Board[0][0] == 'O' && Board[1][1] == 'O' && Board[2][2] == 'O'){ //Checking diag
-                        return 'O';
-                }else
-                        return ' ';
 
+                        return 'O';
+                }else{
+                    return ' ';
+                }
     }
 
     public boolean isOver() {
@@ -67,12 +68,12 @@ public class TicTacToeBoard extends Observable {
     }
 
     public void MoveMarked(int positionX, int positionY, char player) {  //Takes in posX posY and player
+        seeBoard();
         Board[positionX][positionY] = player;                           // char (symbol X or O) to be placed on board.
     }
 
     public boolean isFree(int positionX, int positionY){
         return Board[positionX][positionY] == ' ';
-
     }
     public void seeBoard(){
         System.out.println(" " + Board[0][0] + " | " + Board[0][1] + " | "
