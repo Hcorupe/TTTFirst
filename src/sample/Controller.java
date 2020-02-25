@@ -38,6 +38,7 @@ public class Controller implements UIBoardSubject, Initializable {
     @FXML
     Label winnerBox;
 
+    TicTacToeBoard board;
     Button[][] buttons = new Button[3][3];
     ArrayList<UIBoardObserver> myobservers = new ArrayList<>();
     Boolean PvP = true;
@@ -133,24 +134,37 @@ public class Controller implements UIBoardSubject, Initializable {
         }
     }
 
+    public void handleFinishedGame() {
+        Alert alertBox = new Alert(Alert.AlertType.CONFIRMATION, "Game OutCome", ButtonType.OK, ButtonType.CANCEL);
+        alertBox.setContentText("The OutCome is " );
+        alertBox.showAndWait();
+        if(alertBox.getResult() == ButtonType.OK) {
+            alertBox.close();
+        }
+        else {
+            alertBox.close();
+        }
+    }
+
     void displayWinner(int win, int lose, int tie,char token){
         won += win;
         loss += lose;
         draw += tie;
         winnerBox.setText("Won: " + won + " Loss: " + loss + " Draws: " + draw);
 
+<<<<<<< HEAD
     }
 
+=======
+>>>>>>> 4da93bc4126e9e197f5cb58a2ff94a36d4fd4318
     @Override
     public void addObserver(UIBoardObserver o) {
         this.myobservers.add(o);
     }
-
     @Override
     public void removeObserver() {
 
     }
-
     @Override
     public void notifyObserver(int x, int y) {
         for (UIBoardObserver o : this.myobservers) {
