@@ -3,20 +3,20 @@ package sample;
 import static java.lang.Integer.max;
 import static java.lang.Integer.min;
 
-public class AI extends PlayerBehavior {
+public class AI extends Player {
 
-    TicTacToeBoard TicTacToeBoard;
-    char otherplayer;
+    Board TicTacToeBoard;
+    String otherplayer;
 
 
-    public AI(char symbol, TicTacToeBoard board) {
+    public AI(String symbol, Board board) {
 
         super(symbol, board);
-        if (this.symbol == 'X') {
-            this.otherplayer = 'O';
+        if (this.symbol == "X") {
+            this.otherplayer = "O";
 
         } else
-            this.otherplayer = 'X';
+            this.otherplayer = "X";
         }
 
     @Override
@@ -40,31 +40,24 @@ public class AI extends PlayerBehavior {
                 }
             }
         }
-        board.MoveMarked(moveX, moveY, this.symbol);
-        this.notifyObservers();
-
+        this.notifyOberserver(moveX, moveY);
     }
 
 
-    private int minimax(TicTacToeBoard ticTacToeBoard, int depth, Boolean maximizingPlayer) {
-        TicTacToeBoard virutalboard = new TicTacToeBoard(this.board);
+    private int minimax(Board ticTacToeBoard, int depth, Boolean maximizingPlayer) {
         int maxEval;
         int minEval;
 
-
-        if (depth == 0 || board.isOver())
-            if (board.getWinner() == getSymbol())
-                return 10000;
-            else if (board.getWinner() == getSymbol())
-                return 0;
-            else return -10000;
+        if (depth == 0 || board.gameOver()){
+            return board.changeStringtoInt(super.getSymbol()) * board.getWinner() * depth;
+        }
 
         if (maximizingPlayer) {
             maxEval = -10000;
             for (int i = 0; i < 2; i++) {
                 for (int j = 0; j < 2; j++) {
                     if (board.isFree(i, j)) {
-                        TicTacToeBoard newBoard = new TicTacToeBoard(board);
+                        Board newBoard = new Board(board);
                         newBoard.MoveMarked(i, j, this.symbol);
                         maxEval = max(maxEval, minimax(board, depth - 1, false));
 
@@ -72,13 +65,13 @@ public class AI extends PlayerBehavior {
                 }
             }
             return maxEval;
-
-        } else {
+        }
+        else {
             minEval = 10000;
             for (int i = 0; i < 2; i++) {
                 for (int j = 0; j < 2; j++) {
                     if (board.isFree(i, j)) {
-                        TicTacToeBoard newBoard = new TicTacToeBoard(board);
+                        Board newBoard = new Board(board);
                         newBoard.MoveMarked(i, j, this.otherplayer);
                         minEval = min(minEval, minimax(board, depth - 1, false));
                     }
@@ -86,9 +79,6 @@ public class AI extends PlayerBehavior {
                 }
             }
             return minEval;
-
-
         }
-
     }
 }
