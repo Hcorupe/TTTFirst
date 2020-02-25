@@ -55,18 +55,23 @@ public class TicTacToeController implements GameObserver {
                 whoWon = board.getWinner();
             if (players[0].getSymbol() == whoWon) {
                 System.out.println("WINNER IS: " + whoWon);
+
                 wins++;
             } else if (players[1].getSymbol() == whoWon) {
+
                 System.out.println("WINNER IS: " + whoWon);
                 loss++;
             } else {
                 System.out.println("EVERYONE LOSES");
                 draws++;
 
+
             }
+            //this.controller.handleFinishedGame();
             controller.disableButtons();
             //controller.displayWinner(wins,);
         }
+
     }
 
 }

@@ -57,7 +57,6 @@ public class TicTacToeBoard extends Observable {
     public boolean isOver() {
         if(getWinner() != ' ')
         return true;
-
             for(int x = 0; x < Board.length; x++){
                 for(int y = 0; y < Board.length; y++){
                     if(Board[x][y] == ' ')
