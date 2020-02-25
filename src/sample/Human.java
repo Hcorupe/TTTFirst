@@ -4,7 +4,7 @@ import java.util.Observable;
 import java.util.Observer;
 
 public class Human implements UIBoardObserver,PlayerBehavior{
-//Sending updates to TicTacToeController
+    //Sending updates to TicTacToeController
     //getting updates from Controller
 
     char symbol;

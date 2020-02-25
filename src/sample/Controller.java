@@ -67,6 +67,7 @@ public class Controller implements UIBoardSubject, Initializable {
         for(int x = 0; x <board.getBoard().length; x++ ){
             for(int y = 0; y < board.getBoard().length;y++){
                     buttons[x][y].setText(Character.toString(board.getBoard()[x][y]));
+                    System.out.println("Re draw called "  + board.getBoard()[x][y]);
                     }
             }
         }
@@ -162,5 +163,6 @@ public class Controller implements UIBoardSubject, Initializable {
             o.update(x,y);
         }
     }
+
 
 }
