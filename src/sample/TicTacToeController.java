@@ -2,6 +2,8 @@ package sample;
 
 import javafx.beans.Observable;
 
+import javax.swing.*;
+import java.awt.event.ActionEvent;
 import java.util.*;
 
 public class TicTacToeController implements GameObserver {
@@ -23,6 +25,7 @@ public class TicTacToeController implements GameObserver {
         players[0].addObserver(this);
         players[1].addObserver(this);
     }
+
     public TicTacToeController(Controller controller) {
         this.board = new TicTacToeBoard();
         this.controller = controller;
@@ -44,6 +47,7 @@ public class TicTacToeController implements GameObserver {
         System.out.println("Update getting called");
         processPlayerUpdate();
         controller.reDrawBoard(board);
+
     }
 
     private void processBoardUpdate() {
@@ -67,7 +71,19 @@ public class TicTacToeController implements GameObserver {
 
     }
 
-}
+        public void resetBoard(){
+            for(int x = 0; x <board.getBoard().length; x++ ) {
+                for (int y = 0; y < board.getBoard().length; y++) {
+                    board.getBoard()[x][y] = ' ';
+                }
+            }
+        }
+
+    }
+
+
+
+
 
 
 

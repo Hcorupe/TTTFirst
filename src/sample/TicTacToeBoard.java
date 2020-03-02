@@ -93,5 +93,13 @@ public class TicTacToeBoard extends Observable {
 
     }
 
+    public void resetBoard(){
+        for (int i = 0; i < Board.length; i++) {
+            for (int j = 0; j < Board.length; j++) {
+                Board[i][j] = ' ';
+            }
+        }
+    }
+
 }
 

@@ -16,18 +16,6 @@ import java.util.*;
 
 public class Controller implements UIBoardSubject, Initializable {
 
-    /*              GAME BOARD
-     *              |       |
-     *      zeroZero|zeroOne|zeroTwo
-     *      ________|_______|_______
-     *              |       |
-     *      oneZero |oneOne | oneTwo
-     *      ________|_______|_______
-     *              |       |
-     *      twoZero |twoOne | twoTwo
-     *              |       |
-     */
-
     @FXML
     Button zeroZero,zeroOne,zeroTwo,oneZero,oneOne,oneTwo,twoZero,twoOne,twoTwo;
     @FXML
@@ -42,6 +30,8 @@ public class Controller implements UIBoardSubject, Initializable {
     MenuItem playerVsAi;
     @FXML
     GridPane gridPane;
+    @FXML
+    Label winnerBox;
 
     Button[][] buttons = new Button[3][3];
     PlayerBehavior[][] players = new PlayerBehavior[2][2];
@@ -53,6 +43,8 @@ public class Controller implements UIBoardSubject, Initializable {
     ArrayList<UIBoardObserver> myobservers = new ArrayList<>();
     private boolean firstPlayer = true;
     Boolean PvP = true;
+    int won,loss,draw;
+    boolean resetBoard = true;
 
     public void initialize(URL location, ResourceBundle resources){
         buttons[0][0] = zeroZero;
@@ -72,11 +64,6 @@ public class Controller implements UIBoardSubject, Initializable {
         int y = GridPane.getColumnIndex(clickedButton);
         this.notifyObserver(x,y);
         System.out.println(" Row: " + x + " Col: " + y);
-<<<<<<< HEAD
-
-
-=======
->>>>>>> 1a4d0ea951fad9d02198f33ab69c84482d269ea6
     }
 
     public void reDrawBoard(TicTacToeBoard board){
@@ -89,7 +76,7 @@ public class Controller implements UIBoardSubject, Initializable {
             }
         }
 
-        public void  start(){
+    public void  start(){
             if(PvP){
                 TicTacToeController gamecontroller = new TicTacToeController(this);
                 gamecontroller.startGame(); // can be put in JavaFX controller
@@ -104,9 +91,14 @@ public class Controller implements UIBoardSubject, Initializable {
 
 
     public void resetClicked(ActionEvent Event) {       //TESTING OUT need to Fix Reset button
+        TicTacToeBoard board = new TicTacToeBoard();
+        board.resetBoard();
         start();
         resetStringInButtons();
+
     }
+
+
 
     public void playClicked(ActionEvent playGame) {       //TESTING OUT need to fix Play button
         String testPlay;
@@ -135,6 +127,16 @@ public class Controller implements UIBoardSubject, Initializable {
             }
         }
     }
+
+    void disableButtons(){      //Disables UI Buttons
+        for(int x = 0; x <3; x++ ){
+            for(int y = 0; y <3;y++){
+                buttons[x][y].setDisable(true);
+            }
+        }
+
+    }
+
     void resetStringInButtons(){
         for(int x = 0; x <3; x++ ){
             for(int y = 0; y <3;y++){
@@ -142,6 +144,31 @@ public class Controller implements UIBoardSubject, Initializable {
             }
         }
     }
+
+    public void handleFinishedGame(char token, int tie) {
+        Alert alertBox = new Alert(Alert.AlertType.NONE, "Game OutCome", ButtonType.OK, ButtonType.CANCEL);
+        if(tie == 1)
+        {
+            alertBox.setContentText("IT WAS A TIE!");
+        }
+        else
+            alertBox.setContentText("THE WINNER IS " + token + "!!");
+        alertBox.showAndWait();
+        if(alertBox.getResult() == ButtonType.OK) {
+            alertBox.close();
+        }
+        else {
+            alertBox.close();
+        }
+    }
+    void displayWinner(int win, int lose, int tie,char token) {
+        won += win;
+        loss += lose;
+        draw += tie;
+        winnerBox.setText("Won: " + won + " Loss: " + loss + " Draws: " + draw);
+        handleFinishedGame(token,tie);
+    }
+
 
     @Override
     public void addObserver(UIBoardObserver o) {
